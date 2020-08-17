@@ -36,6 +36,8 @@
         <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
     @endif
 
+    <link rel="stylesheet" href="{{ asset('assets/general/css/style.css') }}">
+
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')
 
@@ -49,20 +51,18 @@
 <header class="@yield('classes_topnav')">
 {{--    @yield('header')--}}
     <div class="row">
-        <div class="col-md-6">
-            <img src="{{ asset('assets/general/imgs/projetopet.png') }}" />
+        <div class="col-6">
+            <img class="img-nav" src="{{ asset('assets/general/imgs/projetopet.png') }}" />
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-6 login-btn text-right">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        <a href="{{ route('login') }}" class="btn btn-light">
+                            <span class="fas fa-sign-in-alt"></span> Entrar
+                        </a>
                     @endauth
                 </div>
             @endif
@@ -75,7 +75,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse text-center">
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#"><span class="fas fa-home"></span></a>
@@ -103,10 +103,6 @@
                     <a class="nav-link" href="#">Quem somos</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar Animal" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fas fa-search"></span></button>
-            </form>
         </div>
     </nav>
 </header>

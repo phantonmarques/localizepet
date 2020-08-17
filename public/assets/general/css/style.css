@@ -1,0 +1,10 @@
+.img-nav {
+    max-width: 45vw;
+}
+
+@media (min-width: 768px) { 
+    .login-btn {
+        padding-top: 2vw;
+        padding-right: 3vw;
+    }
+}
