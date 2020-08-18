@@ -50,7 +50,7 @@
 
 <header class="@yield('classes_topnav')">
 {{--    @yield('header')--}}
-    <div class="row">
+    <div class="row mg-sides-0">
         <div class="col-6">
             <img class="img-nav" src="{{ asset('assets/general/imgs/projetopet.png') }}" />
         </div>
@@ -69,20 +69,20 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark color-default mg-sides-0">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <a class="navbar-brand" href="#">Menu</a>
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto navbar-center">
                 <li class="nav-item active">
                     <a class="nav-link" href="#"><span class="fas fa-home"></span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Animal
+                        Animais
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Achei um animal</a>
@@ -107,12 +107,94 @@
     </nav>
 </header>
 
-
 <main>
     <body class="@yield('classes_body')" @yield('body_data')>
 
     {{-- Body Content --}}
     @yield('body')
+
+    <div class="container-fluid mg-sides-0 pd-sides-0">
+        <div class="row mg-sides-0">  
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('assets/general/imgs/banner1.jpg') }}" class="d-block w-100" alt="banner1">
+                        <!-- 
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>First slide label</h5>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
+                        -->
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/general/imgs/banner1.jpg') }}" class="d-block w-100" alt="banner2">
+                        <!--
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Second slide label</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        -->
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/general/imgs/banner1.jpg') }}" class="d-block w-100" alt="banner3">
+                        <!--
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Third slide label</h5>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        -->
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="row mg-sides-0 justify-content-center">
+            <div class="col-md-6 box-search">
+                <h2>Encontre um animal</h2>
+                <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="keywords" placeholder="Palavras chave">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="city" placeholder="Cidade">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <select id="inputState" class="form-control">
+                              <option selected>Choose...</option>
+                              <option>...</option>
+                            </select>
+                          </div>
+                      <div class="form-group col-md-3">
+                        <select id="inputState" class="form-control">
+                          <option selected>Choose...</option>
+                          <option>...</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <button type="submit" class="btn btn-primary full-btn">Pesquisar</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+
+    </div>
 
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))

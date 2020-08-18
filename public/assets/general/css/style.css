@@ -1,5 +1,56 @@
+/* 
+    Elements html
+*/
+
+
+/* 
+    Class css
+*/
+
+.box-search {
+    -webkit-box-shadow: -1px 15px 25px 2px rgba(0,0,0,0.51);
+    -moz-box-shadow: -1px 15px 25px 2px rgba(0,0,0,0.51);
+    box-shadow: -1px 15px 25px 2px rgba(0,0,0,0.51);
+    border-radius: 33px 33px 33px 33px;
+    -moz-border-radius: 33px 33px 33px 33px;
+    -webkit-border-radius: 33px 33px 33px 33px;
+    border: 0px solid #000000;
+    padding: 2rem;
+}
+
+.color-default {
+    background-color: #56aaaa !important;
+}
+
+.full-btn {
+    width: 100%;
+}
+
 .img-nav {
     max-width: 45vw;
+}
+
+.navbar-center {
+    margin: auto !important;
+}
+
+.nav-item {
+    text-align: center;
+}
+
+.nav-link:hover {
+    color: black !important;
+    transition: .5s all ease-in-out;
+}
+
+.mg-sides-0 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.pd-sides-0 {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 @media (min-width: 768px) { 
