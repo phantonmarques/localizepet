@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\ORM\City;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -15,6 +16,14 @@ class SiteController extends Controller
     public function index()
     {
         return view('site.index');
+    }
+    
+    public function searchCity(Request $request)
+    {
+        $citys = City::where("name_visible", "LIKE", "%{$request->terms}%")
+                    ->get();
+
+        return response()->json($citys);
     }
 
     /**
