@@ -22,8 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search-city', 'Site\\SiteController@searchCity')->name('site.search-city');
 
 # Rotas para registrar usuários comuns
-Route::get('/register', 'Auth\\LoginController@showRegistrationForm')->name('site.auth.register');
-Route::post('register', 'Auth\\LoginController@register')->name('site.auth.register.action');
+Route::get('/register', 'Auth\\RegisterController@showRegistrationCommonForm')->name('site.auth.register');
+Route::post('common/register', 'Auth\\RegisterController@registerCommon')->name('site.auth.register.action');
 
 # Rotas de autenticação para todos usuários
 Route::get('/login', 'Auth\\LoginController@showLogin')->name('site.auth.login');
@@ -31,9 +31,9 @@ Route::post('login', 'Auth\\LoginController@login')->name('site.auth.login.actio
 Route::post('logout', 'Auth\\LoginController@logout')->name('site.auth.logout');
 
 # Rotas para resetas senha para todos usuários
-Route::get('/password/reset', 'Auth\\LoginController@showLinkRequestForm')->name('site.auth.password');
-Route::post('password/reset', 'Auth\\LoginController@reset')->name('site.auth.password.action');
-Route::get('/password/reset/{token}', 'Auth\\LoginController@showResetForm')->name('site.auth.password.reactive');
+Route::get('/password/reset', 'Auth\\ResetPasswordController@showLinkRequestForm')->name('site.auth.password');
+Route::post('password/reset', 'Auth\\ResetPasswordController@reset')->name('site.auth.password.action');
+Route::get('/password/reset/{token}', 'Auth\\ResetPasswordController@showResetForm')->name('site.auth.password.reactive');
 
 
 

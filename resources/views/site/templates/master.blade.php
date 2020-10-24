@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    data-base-url="{{ url('/') }}">
+
+
+   <!-- <html class="fixed { isset($_COOKIE['ag-sidebar-left-collapsed']) ? 'sidebar-left-collapsed' : '' }} whitelabel-bradesco"
+    lang="pt-br"
+    data-logged-company-id="{ logged_company('id') }}"
+    data-logged-user-id="{ logged_user('id') }}"
+    data-environment="{ config('app.env') }}"
+    data-base-url="{ url('/') }}"
+    data-integration-url="{ config('autogestor.url.integration') }}"
+    data-storage-url="{ storage_url() }}" 
+    data-whitelabel="bradesco"> !-->
+<head>
+  
     <head>
         {{-- Base Meta Tags --}}
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
         {{-- Custom Meta Tags --}}
         @yield('meta_tags')

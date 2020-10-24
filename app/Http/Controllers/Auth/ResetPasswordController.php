@@ -27,4 +27,14 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function reset(Request $request)
+    {
+        dd('oibb2');
+    }
+
+    public function showLinkRequestForm() 
+    {
+        return view('site.auth.email');
+    }
 }

@@ -3,7 +3,7 @@
 @section('body-main')
     <main class="container text-center">
         <div class="row justify-content-md-center">
-            <form class="form-signin col-xs-12 col-md-8 col-xl-4" action="{{ route('site.auth.register.action') }}" method="post">
+            <form class="form-signin col-xs-12 col-md-8 col-xl-4" action="{{ route('site.auth.register.action') }}" id="pp-form" method="post">
                {{ csrf_field() }}
     
                <h1>Criar conta de usuário</h1>
@@ -28,7 +28,7 @@
         
                {{-- Name field --}}
                <div class="input-group mb-3 mg-top-3">
-                    <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                    <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" required
                          value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
                     <div class="input-group-append">
                          <div class="input-group-text">
@@ -42,9 +42,25 @@
                     @endif
                </div>
 
+               {{-- Username field --}}
+               <div class="input-group mb-3">
+                    <input type="text" name="username" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" required
+                         value="{{ old('username') }}" placeholder="{{ __('adminlte::adminlte.username') }}" autofocus>
+                    <div class="input-group-append">
+                         <div class="input-group-text">
+                              <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                         </div>
+                    </div>
+                    @if($errors->has('username'))
+                         <div class="invalid-feedback">
+                              <strong>{{ $errors->first('username') }}</strong>
+                         </div>
+                    @endif
+               </div>
+
                {{-- Email field --}}
                <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" required
                          value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}">
                     <div class="input-group-append">
                          <div class="input-group-text">
@@ -60,7 +76,7 @@
 
                {{-- Password field --}}
                <div class="input-group mb-3">
-                    <input type="password" name="password"
+                    <input type="password" name="password" required
                          class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
                          placeholder="{{ __('adminlte::adminlte.password') }}">
                     <div class="input-group-append">
@@ -77,7 +93,7 @@
 
                {{-- Confirm password field --}}
                <div class="input-group mb-3">
-                    <input type="password" name="password_confirmation"
+                    <input type="password" name="password_confirmation" required
                          class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}"
                          placeholder="{{ __('adminlte::adminlte.retype_password') }}">
                     <div class="input-group-append">
@@ -94,7 +110,7 @@
 
                {{-- City field --}}
                <div class="input-group mb-3">
-                    <input type="text" name="city" id="city" 
+                    <input type="text" name="city" id="city" required
                          class="form-control typeahead {{ $errors->has('city') ? 'is-invalid' : '' }}"
                          placeholder="{{ __('adminlte::adminlte.city') }}">
                     <div class="input-group-append">
@@ -110,17 +126,17 @@
                </div>
                {{-- Phone field --}}
                <div class="input-group mb-3">
-                    <input type="text" name="phone"
-                         class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
+                    <input type="text" name="contact" required
+                         class="form-control {{ $errors->has('contact') ? 'is-invalid' : '' }} contact"
                          placeholder="{{ __('adminlte::adminlte.phone_or_cell') }}">
                     <div class="input-group-append">
                          <div class="input-group-text">
                               <span class="fas fa-phone-alt"></span>
                          </div>
                     </div>
-                    @if($errors->has('phone'))
+                    @if($errors->has('contact'))
                          <div class="invalid-feedback">
-                              <strong>{{ $errors->first('phone') }}</strong>
+                              <strong>{{ $errors->first('contact') }}</strong>
                          </div>
                     @endif
                </div>
@@ -156,33 +172,9 @@
 @endsection
 
 @push('script-js')  
-     <!-- jQuery CDN -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
      <!-- Scripts -->
-     <script type="text/javascript">
-     console.log('oi');
-          let path = "{{  route('site.search-city') }}";
-          $('input.typeahead').typeahead({
-               source: function(terms, process) {
-                    return $.get(path, {terms:terms}, function(data) {
-                         return process(data);
-                    })
-               }
-          });
-          $('input.typeahead').keypress(function( event ){		
-		var suggest_a = $('input.typeahead');
-		var qnts_a = suggest_a.length;
-			
-		if( 40==event.keyCode )//seta baixo
-			active = active>=(qnts_a-1) ? 0 : active+1;
-		else if( 38==event.keyCode )//seta cima
-			active = ( active<=0 ) ? qnts_a-1 : active-1;
-		
-		
-		
-		var a = suggest_a.removeClass('active').eq( active ).addClass('active');	
-		$( this ).val( a.text() );
-	     });
-          
-     </script>
+     <script type="text/javascript" src="{{ asset('assets\libs\js\jquery.mask.min.js') }}"></script>
+     <script src="{{  asset('assets\libs\js\typeahead.min.js') }}" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" 
+     crossorigin="anonymous"></script>
+     <script type="text/javascript" src="{{ asset('assets\site\js\register.js') }}"></script>
 @endpush

@@ -76,9 +76,6 @@ class LoginController extends Controller
             return redirect()->route('site.index');
         
         } catch (\Exception $e) {
-            //var_dump($e->getMessage());
-            //die('seilapq');
-
             // Auth::guard('seller')->logout();
 
             //if ($hasPendingFinancial)
@@ -88,30 +85,9 @@ class LoginController extends Controller
         }
     }
 
-    public function register(Request $request)
-    {
-        dd('oibb');
-
-    }
-
-    public function reset(Request $request)
-    {
-        dd('oibb2');
-    }
-
-    public function showLinkRequestForm() 
-    {
-        return view('site.auth.email');
-    }
-
     public function showLogin()
     {
         return view('site.auth.login');
-    }
-
-    public function showRegistrationForm()
-    {
-        return view('site.auth.register');
     }
     
 }

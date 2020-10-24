@@ -20,8 +20,7 @@ class SiteController extends Controller
     
     public function searchCity(Request $request)
     {
-        $citys = City::where("name_visible", "LIKE", "%{$request->terms}%")
-                    ->get();
+        $citys = City::where("name_visible", "LIKE", "%{$request->terms}%")->get();
 
         return response()->json($citys);
     }
