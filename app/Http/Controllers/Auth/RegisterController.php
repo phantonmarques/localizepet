@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
-use App\ORM\User;
+use App\ORM\User\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +33,30 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private $messages = [     
+        'name.required'         => 'O campo Nome Completo é obrigatório!',     
+        'name.min'              => 'O campo Nome Completo deve conter no mínimo 3 letras!',     
+        'name.max'              => 'O campo Nome Completo deve conter no máximo 50 letras!',   
+        'email.required'        => 'O campo E-mail é obrigatório!',     
+        'email.email'           => 'O campo E-mail deve conter um formato válido!',     
+        'email.max'             => 'O campo E-mail deve conter no máximo 50 letras!',  
+        'email.unique'          => 'Já existe esse e-mail cadastrado, favor recupere a conta ou utilize outro!',   
+        'password.required'     => 'O campo Senha é obrigatório!',     
+        'password.min'          => 'O campo Senha deve conter no mínimo 8 letras/números/simbolos!',  
+        'password.confirmed'    => 'É obrigatório confirmar a senha!',   
+        'city.required'         => 'O campo Cidade é obrigatório',     
+        'city.min'              => 'O campo Cidade deve conter no mínimo 3 letras!',  
+        'contact.regex'         => 'O campo Telefone ou Celular deve conter um formato válido!',  
+    ];
+
+    private $rules = [
+        'name'              => 'required|min:10|max:50',
+        'email'             => 'required|email|max:50|unique:users',
+        'password'          => 'required|min:8|confirmed',
+        'city'              => 'required|min:3',
+        'contact'           => 'regex:/(01)[0-9]{9}/'
+    ];
+
     /**
      * Create a new controller instance.
      *
@@ -49,31 +73,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data, string $typeUser = 'common')
+    protected function validator(Request $data, string $typeUser = 'common')
     {
-        return Validator::make($data, [
-            'name'              => [ 'required', 'min:10', 'max:50' ],
-            'email'             => [ 'required', 'email', 'max:50', 'unique:users' ],
-            'password'          => [ 'required', 'min:8', 'confirmed' ],
-            'city'              => [ 'required', 'min:3' ],
-            'contact'           => [ 'regex:/(01)[0-9]{9}/' ]
-        ],
-        [     
-            'name.required'         => 'O campo Nome Completo é obrigatório!',     
-            'name.min'              => 'O campo Nome Completo deve conter no mínimo 3 letras!',     
-            'name.max'              => 'O campo Nome Completo deve conter no máximo 50 letras!',   
-            'email.required'        => 'O campo E-mail é obrigatório!',     
-            'email.email'           => 'O campo E-mail deve conter um formato válido!',     
-            'email.max'             => 'O campo E-mail deve conter no máximo 50 letras!',  
-            'email.unique'          => 'Já existe esse e-mail cadastrado, favor recupere a conta ou utilize outro!',   
-            'password.required'     => 'O campo Senha é obrigatório!',     
-            'password.min'          => 'O campo Senha deve conter no mínimo 8 letras/números/simbolos!',  
-            'password.confirmed'    => 'É obrigatório confirmar a senha!',   
-            'city.required'         => 'O campo Cidade é obrigatório',     
-            'city.min'              => 'O campo Cidade deve conter no mínimo 3 letras!',  
-            'contact.regex'         => 'O campo Telefone ou Celular deve conter um formato válido!',  
- 
-        ]);
+        return Validator::make($data, $this->rules, $this->messages);
     }
 
     public function showRegistrationCommonForm()
@@ -83,9 +85,12 @@ class RegisterController extends Controller
 
     public function registerCommon(Request $request)
     {
-        $this->validator($request->input(), 'common');
+        $this->validator($request->all(), 'common');
+
 
         $data = $request->validate();
+        dd('$data');
+
 
 
 

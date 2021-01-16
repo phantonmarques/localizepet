@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\ORM\City;
+use App\ORM\Location\City;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller

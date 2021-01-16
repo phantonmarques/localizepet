@@ -45,11 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Projeto</b>PET',
-    'logo_img' => 'public/assets/general/imgs/projetopet.png',
+    'logo' => '',
+    'logo_img' => 'assets/general/imgs/projetopet-mini.png',
+    'logo_mini' => '',
     'logo_img_class' => 'brand-image img-circle elevation-3',
-    'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
+    'logo_img_xl' => 'assets/general/imgs/projetopet-painel.png',
+    'logo_img_xl_class' => 'brand-image-custom img-circle elevation-3',
     'logo_img_alt' => 'ProjetoPet',
 
     /*
@@ -241,14 +242,33 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        // [
+        //     'text'        => 'pages',
+        //     'url'         => 'admin/pages',
+        //     'icon'        => 'far fa-fw fa-file',
+        //     'label'       => 4,
+        //     'label_color' => 'success',
+        // ],
+        [ 'header' => 'manager_users' ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'    => 'users',
+            'icon'    => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'list',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'create',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'excluded',
+                    'url'  => '#',
+                ],
+            ],
         ],
-        ['header' => 'account_settings'],
+        [ 'header' => 'account_settings' ],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',

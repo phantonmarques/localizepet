@@ -1,7 +1,7 @@
 <?php
 
     use Illuminate\Database\Seeder;
-    use App\ORM\City;
+    use App\ORM\Location\City;
 
     class CitySeeder extends Seeder
     {

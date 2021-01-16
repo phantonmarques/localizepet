@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ORM\State;
+use App\ORM\Location\State;
 
 class StatesSeeder extends Seeder
 {
