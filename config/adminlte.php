@@ -252,21 +252,103 @@ return [
         [ 'header' => 'manager_users' ],
         [
             'text'    => 'users',
-            'icon'    => 'fas fa-fw fa-user',
+            'icon'    => 'fas fa-users-cog',
             'submenu' => [
                 [
                     'text' => 'list',
+                    'icon' => 'far fa-list-alt',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'create',
+                    'icon' => 'fas fa-user-plus',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'excluded',
+                    'icon' => 'fas fa-user-times',
                     'url'  => '#',
                 ],
             ],
+        ],
+        [
+            'text'    => 'permissions',
+            'icon'    => 'fas fa-user-shield',
+            'submenu' => [
+                [
+                    'text' => 'list',
+                    'icon' => 'far fa-list-alt',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'create',
+                    'icon' => 'fas fa-plus',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'excluded',
+                    'icon' => 'fas fa-minus',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'roles',
+            'icon'    => 'fas fa-user-tie',
+            'submenu' => [
+                [
+                    'text' => 'list',
+                    'icon' => 'far fa-list-alt',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'create',
+                    'icon' => 'fas fa-plus',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'excluded',
+                    'icon' => 'fas fa-minus',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        [ 'header' => 'manager_content' ],
+        [
+            'text' => 'animals_donate',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-dog',
+        ],
+        [
+            'text' => 'animals_found',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-search-location',
+        ],
+        [
+            'text' => 'animals_lost',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-map-marked-alt',
+        ],
+        [ 'header' => 'general_settings' ],
+        [
+            'text' => 'adverts',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-chart-line',
+        ],
+        [
+            'text' => 'flag',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-images',
+        ],
+        [
+            'text' => 'contributors',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-hand-holding-medical',
+        ],
+        [
+            'text' => 'plans',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-handshake',
         ],
         [ 'header' => 'account_settings' ],
         [
