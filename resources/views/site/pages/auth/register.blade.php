@@ -29,10 +29,10 @@
                {{-- Name field --}}
                <div class="input-group mb-3 mg-top-3">
                     <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" required
-                         value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+                         value="{{ old('name') }}" placeholder="Nome completo" autofocus>
                     <div class="input-group-append">
                          <div class="input-group-text">
-                              <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                              <span class="fas fa-user {{ config('projetopet.classes_auth_icon', '') }}"></span>
                          </div>
                     </div>
                     @if($errors->has('name'))
@@ -45,10 +45,10 @@
                {{-- Username field --}}
                <div class="input-group mb-3">
                     <input type="text" name="username" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" required
-                         value="{{ old('username') }}" placeholder="{{ __('adminlte::adminlte.username') }}" autofocus>
+                         value="{{ old('username') }}" placeholder="Nome de Usuário" autofocus>
                     <div class="input-group-append">
                          <div class="input-group-text">
-                              <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                              <span class="fas fa-user {{ config('projetopet.classes_auth_icon', '') }}"></span>
                          </div>
                     </div>
                     @if($errors->has('username'))
@@ -61,10 +61,10 @@
                {{-- Email field --}}
                <div class="input-group mb-3">
                     <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" required
-                         value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}">
+                         value="{{ old('email') }}" placeholder="E-mail">
                     <div class="input-group-append">
                          <div class="input-group-text">
-                              <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                              <span class="fas fa-envelope {{ config('projetopet.classes_auth_icon', '') }}"></span>
                          </div>
                     </div>
                     @if($errors->has('email'))
@@ -78,10 +78,10 @@
                <div class="input-group mb-3">
                     <input type="password" name="password" required
                          class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                         placeholder="{{ __('adminlte::adminlte.password') }}">
+                         placeholder="Senha">
                     <div class="input-group-append">
                          <div class="input-group-text">
-                              <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                              <span class="fas fa-lock {{ config('projetopet.classes_auth_icon', '') }}"></span>
                          </div>
                     </div>
                     @if($errors->has('password'))
@@ -95,10 +95,10 @@
                <div class="input-group mb-3">
                     <input type="password" name="password_confirmation" required
                          class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}"
-                         placeholder="{{ __('adminlte::adminlte.retype_password') }}">
+                         placeholder="Repita a senha">
                     <div class="input-group-append">
                          <div class="input-group-text">
-                              <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                              <span class="fas fa-lock {{ config('projetopet.classes_auth_icon', '') }}"></span>
                          </div>
                     </div>
                     @if($errors->has('password_confirmation'))
@@ -112,7 +112,7 @@
                <div class="input-group mb-3">
                     <input type="text" name="city" id="city" required
                          class="form-control typeahead {{ $errors->has('city') ? 'is-invalid' : '' }}"
-                         placeholder="{{ __('adminlte::adminlte.city') }}">
+                         placeholder="Cidade">
                     <div class="input-group-append">
                          <div class="input-group-text">
                               <span class="fas fa-city"></span>
@@ -128,7 +128,7 @@
                <div class="input-group mb-3">
                     <input type="text" name="contact" required
                          class="form-control {{ $errors->has('contact') ? 'is-invalid' : '' }} contact"
-                         placeholder="{{ __('adminlte::adminlte.phone_or_cell') }}">
+                         placeholder="Telefone ou celular">
                     <div class="input-group-append">
                          <div class="input-group-text">
                               <span class="fas fa-phone-alt"></span>
@@ -142,16 +142,17 @@
                </div>
 
                {{-- Register button --}}
-               <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-dark') }}">
+               <button type="submit" class="btn btn-block {{ config('projetopet.classes_auth_btn', 'btn-flat btn-dark') }}">
                     <span class="fas fa-user-plus"></span>
-                    {{ __('adminlte::adminlte.register') }}
+                    Registrar
                </button>   
 
                {{-- Register link --}}
                <div class="row">
                     <div class="col-12">
-                        Já tem uma conta ? <a class="link_login" href="{{ route('site.auth.login') }}">
-                                {{ __('adminlte::adminlte.sign_in') }}
+                        Já tem uma conta ? 
+                        <a class="link_login" href="{{ route('site.auth.login') }}">
+                              Entrar
                         </a>
                     </div>
                 </div> 
@@ -160,7 +161,7 @@
                 <div class="row">
                     <div class="col-12">
                         <a class="link_login" href="{{ route('site.auth.login') }}">
-                            {{ __('adminlte::adminlte.be_a_partner') }}
+                              Seja um parceiro
                         </a>
                     </div>
                 </div>       

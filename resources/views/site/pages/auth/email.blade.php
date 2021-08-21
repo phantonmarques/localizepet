@@ -28,10 +28,10 @@
                {{-- Email field --}}
                <div class="input-group mb-3">
                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                          value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" required autofocus>
+                          value="{{ old('email') }}" placeholder="E-mail" required autofocus>
                    <div class="input-group-append">
                        <div class="input-group-text">
-                           <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                           <span class="fas fa-envelope {{ config('projetopet.classes_auth_icon', '') }}"></span>
                        </div>
                    </div>
                    @if($errors->has('email'))
@@ -42,9 +42,9 @@
                </div>
        
                {{-- Send reset link button --}}
-               <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+               <button type="submit" class="btn btn-block {{ config('projetopet.classes_auth_btn', 'btn-flat btn-primary') }}">
                    <span class="fas fa-share-square"></span>
-                   {{ __('adminlte::adminlte.send_password_reset_link') }}
+                   Enviar link de recuperação de senha
                </button>    
         
             </form>

@@ -1,28 +1,42 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Panel\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\ORM\User\User;
+use App\ORM\Auth\Role;
 use App\ORM\Location\City;
+use App\ORM\Location\State;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class UsersController extends Controller
 {
+    public function __construct()
+    {
+        // die('oi safado');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($filter = null)
     {
-        return view('site.pages.home');
-    }
-    
-    public function searchCity(Request $request)
-    {
-        $citys = City::where("name_visible", "LIKE", "%{$request->terms}%")->get();
+        $users = User::orderBy('name', 'ASC');
 
-        return response()->json($citys);
+        if ($filter === 'trashed')
+            $users = $users->onlyTrashed()->get();
+        else
+            $users = $users->get();
+
+        return view( 'panel.pages.administrator.users.list' )->with([ 'users' => $users ]);
+    }
+
+    public function listTrashed()
+    {
+        return $this->index('trashed');
     }
 
     /**
@@ -32,7 +46,10 @@ class SiteController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::orderBy('name', 'ASC')->get();
+        $states = State::orderBy('name_visible', 'ASC')->get();
+
+        return view( 'panel.pages.administrator.users.create' )->with([ 'roles' => $roles, 'states' => $states ]);
     }
 
     /**
@@ -54,7 +71,9 @@ class SiteController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        return view( 'panel.pages.administrator.users.show' )->with([ 'user' => $user ]);
     }
 
     /**
@@ -65,7 +84,7 @@ class SiteController extends Controller
      */
     public function edit($id)
     {
-        //
+        die('editar');
     }
 
     /**

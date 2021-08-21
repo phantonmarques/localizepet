@@ -1,0 +1,103 @@
+/* Global
+ * Utilizado em todos os arquivos do projeto.
+__________________________________________________ */
+
+/* Links
+-------- */
+
+a {
+     text-decoration: none;
+     color: #343a40;
+     transition: all .4s ease-in-out;
+     -webkit-transition: all .4s ease-in-out;
+}
+
+a:hover {
+     color: rgba(86,170,170,0.8);
+}
+
+.nav-link.active {
+     background-color: rgba(86,170,170,0.8) !important;
+}
+
+.nav-link:not(.active):hover {
+     color: rgba(86,170,170,0.8) !important;
+}
+
+/* Button
+-------- */
+
+.btn-default {
+     display: inline-block;
+     font-weight: 400;
+     font-size: 16px;
+     text-align: center;
+     cursor: pointer;
+     vertical-align: middle;
+     box-shadow: none;
+     padding: 3px 10px;
+     line-height: 1.5;
+     color: #fff;
+     border: 1px solid #343a40;
+     background: #343a40;
+     border-radius: 8px;
+     -webkit-border-radius: 8px;
+     transition: all .4s ease-in-out;
+     -webkit-transition: all .4s ease-in-out;
+}
+
+.btn-default:hover {
+     background: rgba(86,170,170,0.8);
+     border-color: rgba(86,170,170,0.8);
+     color: #fff;
+}
+
+/* Card
+-------- */
+
+.card-title {
+     font-size: 21px;
+     font-weight: 510;
+     padding: 3px 0;
+     line-height: 1.5;
+}
+
+.card-default.card-outline {
+     border-top: 3px solid rgba(86,170,170,0.8);
+}
+
+/* Breadcrumbs
+-------- */
+
+.breadcrumb-item + .breadcrumb-item:before {
+     content: ">";
+}
+
+/* Logo Configuration
+-------- */
+
+.brand-link.logo-switch {
+     padding: 20px 0;
+ }
+
+.brand-link .brand-image-custom {
+     max-height: 35px;
+}
+
+/* Breakpoint minímos 
+-------- */
+
+/* Breakpoint máximos 
+-------- */
+
+
+/* Auxiliares
+-------- */
+
+.s-nwrap { white-space: nowrap; }
+.required_icon { color: red; font-weight: bold; }
+.fs-1 { font-size: 2.5rem !important; }
+.fs-2 { font-size: 2rem !important; }
+.fs-3 { font-size: 1.75rem !important; }
+.fs-4 { font-size: 1.5rem !important; }
+.fs-5 { font-size: 1.25rem !important; }

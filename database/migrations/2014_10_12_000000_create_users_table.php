@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('site')->nullable();
             $table->string('profile_photo')->nullable();
             $table->boolean('approved');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
 

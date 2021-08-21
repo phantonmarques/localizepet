@@ -80,7 +80,7 @@ class RegisterController extends Controller
 
     public function showRegistrationCommonForm()
     {
-        return view('site.auth.register');
+        return view('site.pages.auth.register');
     }
 
     public function registerCommon(Request $request)
@@ -179,8 +179,6 @@ class RegisterController extends Controller
                 'message' => trans('message_alert.error.create'),
             ]);
         }
-
-        dd('oibb');
 
     }
 

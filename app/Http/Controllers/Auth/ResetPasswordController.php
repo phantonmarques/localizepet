@@ -35,6 +35,6 @@ class ResetPasswordController extends Controller
 
     public function showLinkRequestForm() 
     {
-        return view('site.auth.email');
+        return view('site.pages.auth.email');
     }
 }

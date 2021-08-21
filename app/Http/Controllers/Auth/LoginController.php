@@ -87,7 +87,7 @@ class LoginController extends Controller
 
     public function showLogin()
     {
-        return view('site.auth.login');
+        return view('site.pages.auth.login');
     }
     
 }

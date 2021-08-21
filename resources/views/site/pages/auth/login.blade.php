@@ -1,6 +1,6 @@
 @extends('site.templates.master')
 
-@section('adminlte_css_pre')
+@section('projetopet_css_pre')
     <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 @stop
 
@@ -32,10 +32,10 @@
                 {{-- Email or Username field --}}
                 <div class="input-group mb-3">
                     <input type="text" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                           value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }} ou {{ __('adminlte::adminlte.username') }}" required autofocus>
+                           value="{{ old('email') }}" placeholder="E-mail ou Nome de Usuário" required autofocus>
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                            <span class="fas fa-envelope {{ config('projetopet.classes_auth_icon', '') }}"></span>
                         </div>
                     </div>
                     @if($errors->has('email'))
@@ -48,10 +48,10 @@
                 {{-- Password field --}}
                 <div class="input-group mb-3">
                     <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                           placeholder="{{ __('adminlte::adminlte.password') }}" required>
+                           placeholder="Senha" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                            <span class="fas fa-lock {{ config('projetopet.classes_auth_icon', '') }}"></span>
                         </div>
                     </div>
                     @if($errors->has('password'))
@@ -65,7 +65,7 @@
                     <div class="col-12">
                         <div class="icheck-greensea">
                             <input type="checkbox" name="remember" id="remember">
-                            <label for="remember">{{ __('adminlte::adminlte.remember_me') }}</label>
+                            <label for="remember">Lembrar-me</label>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-12">
                         <button type=submit class="btn btn-block btn-dark">
-                            {{ __('adminlte::adminlte.sign_in') }}
+                            Entrar
                         </button>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                 <div class="row">
                     <div class="col-12">
                         Não tem uma conta ? <a class="link_login" href="{{ route('site.auth.register') }}">
-                                {{ __('adminlte::adminlte.register_a_new_membership') }}
+                            Criar nova conta
                         </a>
                     </div>
                 </div> 
@@ -92,7 +92,7 @@
                 <div class="row">
                     <div class="col-12">
                         <a class="link_login" href="{{ route('site.auth.password') }}">
-                            {{ __('adminlte::adminlte.i_forgot_my_password') }}
+                            Esqueci minha senha
                         </a>
                     </div>
                 </div>       

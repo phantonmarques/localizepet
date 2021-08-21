@@ -231,190 +231,164 @@ return [
     |
     */
 
+     //    [
+     //        'text' => 'buscar',
+     //        'search' => true,
+     //        'topnav' => true,
+     //    ],
+
     'menu' => [
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        // [
-        //     'text'        => 'pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
-        [ 'header' => 'manager_users' ],
-        [
-            'text'    => 'users',
-            'icon'    => 'fas fa-users-cog',
-            'submenu' => [
-                [
-                    'text' => 'list',
-                    'icon' => 'far fa-list-alt',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'create',
-                    'icon' => 'fas fa-user-plus',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'excluded',
-                    'icon' => 'fas fa-user-times',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        [
-            'text'    => 'permissions',
-            'icon'    => 'fas fa-user-shield',
-            'submenu' => [
-                [
-                    'text' => 'list',
-                    'icon' => 'far fa-list-alt',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'create',
-                    'icon' => 'fas fa-plus',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'excluded',
-                    'icon' => 'fas fa-minus',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        [
-            'text'    => 'roles',
-            'icon'    => 'fas fa-user-tie',
-            'submenu' => [
-                [
-                    'text' => 'list',
-                    'icon' => 'far fa-list-alt',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'create',
-                    'icon' => 'fas fa-plus',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'excluded',
-                    'icon' => 'fas fa-minus',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        [ 'header' => 'manager_content' ],
-        [
-            'text' => 'animals_donate',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-dog',
-        ],
-        [
-            'text' => 'animals_found',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-search-location',
-        ],
-        [
-            'text' => 'animals_lost',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-map-marked-alt',
-        ],
-        [ 'header' => 'general_settings' ],
-        [
-            'text' => 'adverts',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-chart-line',
-        ],
-        [
-            'text' => 'flag',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-images',
-        ],
-        [
-            'text' => 'contributors',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-hand-holding-medical',
-        ],
-        [
-            'text' => 'plans',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-handshake',
-        ],
-        [ 'header' => 'account_settings' ],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
+          [ 'header' => 'Financeiro' ],
+          [
+               'text' => 'Contribuidores',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-hand-holding-medical',
+               'submenu' => [
+                    [
+                         'text' => 'Listar',
+                         'icon' => 'far fa-list-alt',
+                         'url'  => '#',
                     ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+                    [
+                         'text' => 'Cadastrar',
+                         'icon' => 'fas fa-user-plus',
+                         'url'  => '#',
+                    ],
+                    [
+                         'text' => 'Excluídos',
+                         'icon' => 'fas fa-user-times',
+                         'url'  => '#',
+                    ],
+               ],
+          ],
+          [
+               'text' => 'Planos',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-handshake',
+               'submenu' => [
+                    [
+                         'text' => 'Listar',
+                         'icon' => 'far fa-list-alt',
+                         'url'  => '#',
+                    ],
+                    [
+                         'text' => 'Cadastrar',
+                         'icon' => 'fas fa-user-plus',
+                         'url'  => '#',
+                    ],
+                    [
+                         'text' => 'Excluídos',
+                         'icon' => 'fas fa-user-times',
+                         'url'  => '#',
+                    ],
+               ],
+          ],
+          [ 'header' => 'Gerenciamento de Usuários' ],
+          [
+               'text'    => 'Usuários',
+               'icon'    => 'fas fa-users-cog',
+               'submenu' => [
+                    [
+                         'text'  => 'Listar',
+                         'icon'  => 'far fa-list-alt',
+                         'route' => 'panel.users.index',
+                    ],
+                    [
+                         'text'  => 'Cadastrar',
+                         'icon'  => 'fas fa-user-plus',
+                         'route' => 'panel.users.create',
+                    ],
+                    [
+                         'text'  => 'Excluídos',
+                         'icon'  => 'fas fa-user-times',
+                         'route' => 'panel.users.trashed',
+                    ],
+               ],
+          ],
+          [
+               'text'    => 'Permissões',
+               'icon'    => 'fas fa-user-shield',
+               'submenu' => [
+                    [
+                         'text' => 'Listar',
+                         'icon' => 'far fa-list-alt',
+                         'url'  => '#',
+                    ],
+                    [
+                         'text' => 'Cadastrar',
+                         'icon' => 'fas fa-plus',
+                         'url'  => '#',
+                    ],
+                    [
+                         'text' => 'Excluídos',
+                         'icon' => 'fas fa-minus',
+                         'url'  => '#',
+                    ],
+               ],
+          ],
+          [
+               'text'    => 'Funções',
+               'icon'    => 'fas fa-user-tie',
+               'submenu' => [
+                    [
+                         'text' => 'Listar',
+                         'icon' => 'far fa-list-alt',
+                         'url'  => '#',
+                    ],
+                    [
+                         'text' => 'Cadastrar',
+                         'icon' => 'fas fa-plus',
+                         'url'  => '#',
+                    ],
+                    [
+                         'text' => 'Excluídos',
+                         'icon' => 'fas fa-minus',
+                         'url'  => '#',
+                    ],
+               ],
+          ],
+          [ 'header' => 'Gerenciamento de Conteúdo' ],
+          [
+               'text' => 'Animais para Doação',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-dog',
+          ],
+          [
+               'text' => 'Animais Encontrados',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-search-location',
+          ],
+          [
+               'text' => 'Animais Perdidos',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-map-marked-alt',
+          ],
+          [
+               'text' => 'Anúncios',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-chart-line',
+          ],
+          [
+               'text' => 'Banner',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-images',
+          ],
+          [ 'header' => 'Configurações da Conta' ],
+          [
+               'text' => 'Perfil',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-fw fa-user',
+          ],
+          [
+               'text' => 'Mudar Senha',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-fw fa-lock',
+          ],
+          [
+               'text' => 'Configurar Página',
+               'url'  => 'admin/settings',
+               'icon' => 'fas fa-cogs',
+          ],       
     ],
 
     /*
@@ -453,27 +427,27 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' => '//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js',
                 ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-                ],
+               //  [
+               //      'type' => 'js',
+               //      'asset' => false,
+               //      'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+               //  ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => '//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css',
                 ],
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
