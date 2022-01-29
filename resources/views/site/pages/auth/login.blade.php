@@ -1,13 +1,9 @@
 @extends('site.templates.master')
 
-@section('projetopet_css_pre')
-    <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-@stop
-
 @section('body-main')
     <main class="container text-center">
         <div class="row justify-content-md-center">
-            <form class="form-signin col-xs-12 col-md-8 col-xl-4" action="{{ route('site.auth.login.action') }}" method="post">
+            <form class="form-signin col-xs-12 col-md-8 col-xl-4" action="{{ route('site.auth.login') }}" method="post">
                 {{ csrf_field() }}
     
                 <h1 class="mg-bottom-3">Acesse sua conta</h1>

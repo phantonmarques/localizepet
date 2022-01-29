@@ -173,9 +173,5 @@
 @endsection
 
 @push('script-js')  
-     <!-- Scripts -->
-     <script type="text/javascript" src="{{ asset('assets\libs\js\jquery.mask.min.js') }}"></script>
-     <script src="{{  asset('assets\libs\js\typeahead.min.js') }}" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" 
-     crossorigin="anonymous"></script>
      <script type="text/javascript" src="{{ asset('assets\site\js\register.js') }}"></script>
 @endpush

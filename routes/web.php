@@ -15,26 +15,35 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'Site\\SiteController@index')->name('site.index');
+Route::group( [ 'as' => 'site.', 'namespace' => 'Site' ], function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/search-city', 'Site\\SiteController@searchCity')->name('site.search-city');
+    Route::get('/search-city', 'HomeController@searchCity')->name('search-city');
 
-# Rotas para registrar usuários comuns
-Route::get('/register', 'Auth\\RegisterController@showRegistrationCommonForm')->name('site.auth.register');
-Route::post('common/register', 'Auth\\RegisterController@registerCommon')->name('site.auth.register.action');
+    /** Authentication */
+    Route::group( [ 'as' => 'auth.', 'namespace' => 'Auth' ], function () {
 
-# Rotas de autenticação para todos usuários
-Route::get('/login', 'Auth\\LoginController@showLogin')->name('site.auth.login');
-Route::post('login', 'Auth\\LoginController@login')->name('site.auth.login.action');
-Route::post('logout', 'Auth\\LoginController@logout')->name('site.auth.logout');
+        # Login/Logout
+        Route::get('/login', 'LoginController@showLogin')->name('login');
+        Route::post('/login', 'LoginController@login')->name('login');
+        Route::post('/logout', 'LoginController@logout')->name('logout');
 
-# Rotas para resetas senha para todos usuários
-Route::get('/password/reset', 'Auth\\ResetPasswordController@showLinkRequestForm')->name('site.auth.password');
-Route::post('password/reset', 'Auth\\ResetPasswordController@reset')->name('site.auth.password.action');
-Route::get('/password/reset/{token}', 'Auth\\ResetPasswordController@showResetForm')->name('site.auth.password.reactive');
+        /** REFAZER TUDO ABAIXO --------- */
+        # Register User Simple
+        Route::get('/register', 'RegisterController@showRegistrationCommonForm')->name('register');
+        Route::post('/common/register', 'RegisterController@registerCommon')->name('register');
+
+        Route::group( [ 'prefix' => 'password' ], function () {
+
+            # Reset Password /** AINDA NÃO ESTÁ PRONTO */
+            Route::get('/reset', 'ResetPasswordController@showLinkRequestForm')->name('password');
+            Route::post('/reset', 'ResetPasswordController@reset')->name('password-reset');
+            Route::get('/reset/{token}', 'ResetPasswordController@showResetForm')->name('site.auth.password-form');
+
+        });
 
 
+    });
 
-
+} );

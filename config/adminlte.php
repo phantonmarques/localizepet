@@ -291,17 +291,17 @@ return [
                     [
                          'text'  => 'Listar',
                          'icon'  => 'far fa-list-alt',
-                         'route' => 'panel.users.index',
+                         'route' => 'administrator.user.index',
                     ],
                     [
                          'text'  => 'Cadastrar',
                          'icon'  => 'fas fa-user-plus',
-                         'route' => 'panel.users.create',
+                         'route' => 'administrator.user.create',
                     ],
                     [
                          'text'  => 'Excluídos',
                          'icon'  => 'fas fa-user-times',
-                         'route' => 'panel.users.trashed',
+                         'route' => 'administrator.user.trashed',
                     ],
                ],
           ],

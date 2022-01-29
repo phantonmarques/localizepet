@@ -8,7 +8,7 @@
             @if (Route::has('site.auth.login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('administrator.home') }}">Home</a>
                     @else
                         <a href="{{ route('site.auth.login') }}" class="btn btn-light">
                             <span class="fas fa-sign-in-alt"></span> Entrar

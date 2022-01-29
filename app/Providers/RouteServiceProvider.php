@@ -46,7 +46,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        $this->mapPanelRoutes();
+        $this->mapAdministratorRoutes();
     }
 
     /**
@@ -70,13 +70,13 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapPanelRoutes()
+    protected function mapAdministratorRoutes()
     {
-        Route::prefix('panel')
-            ->as('panel.')
-            ->middleware('panel')
-            ->namespace($this->namespace . '\Panel')
-            ->group(base_path('routes/panel.php'));
+        Route::prefix('administrator')
+            ->as('administrator.')
+            ->middleware('administrator')
+            ->namespace($this->namespace . '\Administrator')
+            ->group(base_path('routes/administrator.php'));
     }
 
     /**

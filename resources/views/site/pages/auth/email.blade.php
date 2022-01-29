@@ -3,7 +3,7 @@
 @section('body-main')
     <main class="container text-center">
         <div class="row justify-content-md-center">
-            <form class="form-signin col-xs-12 col-md-8 col-xl-4" action="{{ route('site.auth.password.action') }}" method="post">
+            <form class="form-signin col-xs-12 col-md-8 col-xl-4" action="{{ route('site.auth.password-reset') }}" method="post">
                {{ csrf_field() }}
     
                <h1 class="mg-bottom-3">Recuperar conta de usuário</h1>
@@ -11,7 +11,8 @@
                @if($errors->any() || session('error'))
                    <div class="row mt-3 w-100 align-self-center" id="message-error">
                        <div class="card card-error-message bg-danger" style="width: 100%;">
-                           <div class="card-header"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Registrar uma conta falhou!</div>
+                           <div class="card-header">
+                               <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Registrar uma conta falhou!</div>
                            <div class="card-body">
                                <ul style="padding-left: 15px;">
                                    @forelse($errors->all() as $message)
