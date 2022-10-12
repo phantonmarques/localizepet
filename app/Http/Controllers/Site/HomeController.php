@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\ORM\Location\City;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -82,12 +81,5 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function searchCity(Request $request)
-    {
-        $citys = City::where("name_visible", "LIKE", "%{$request->terms}%")->get();
-
-        return response()->json($citys);
     }
 }

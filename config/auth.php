@@ -14,6 +14,7 @@ return [
     */
 
     'defaults' => [
+
         'guard'     => 'web',
         'passwords' => 'users',
     ],
@@ -37,14 +38,14 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver'   => 'token',
             'provider' => 'users',
-            'hash' => false,
+            'hash'     => false,
         ],
     ],
 
@@ -66,15 +67,11 @@ return [
     */
 
     'providers' => [
+
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\ORM\User\User::class,
+            'model'  => App\ORM\User\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -93,11 +90,12 @@ return [
     */
 
     'passwords' => [
+
         'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
+            'provider'  => 'users',
+            'table'     => 'password_resets',
+            'expire'    => 60,
+            'throttle'  => 60,
         ],
     ],
 
@@ -113,5 +111,15 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    /*
+    |--------------------------------------------------------------------------
+    | E-mail Verify
+    |--------------------------------------------------------------------------
+    */
+
+    'verification' => [
+        'expire' => 60
+    ]
 
 ];

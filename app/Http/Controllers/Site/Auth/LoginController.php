@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Site\Auth;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Site\LoginRequest;
 use App\Providers\RouteServiceProvider;
+use App\Traits\Auth\UserEmailVerifiedTrait;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, UserEmailVerifiedTrait;
 
     /**
      * Where to redirect users after login.
@@ -31,46 +31,43 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function validator(array $data)
+    /**
+     * @param LoginRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function login(LoginRequest $request)
     {
-        return Validator::make($data, [
-            'email'    => 'required|string',
-            'password' => 'required|min:6',
-        ]);
-    }
-
-    public function login(Request $request)
-    {
-        $this->validator($request->input());
-
-        $user = null;
-
         try {
-
             $data = [
-                attributeLogin($request->email) => $request->email, 
-                'password' => $request->password
+                'email'     => $request->email,
+                'password'  => $request->password
             ];
         
-            if(Auth::guard('web')->attempt($data, $request->filled('remember')) === false)
-                throw new \Exception(trans('auth.invalid'));
+            if (Auth::guard('web')->attempt($data, $request->filled('remember')) === false) {
 
-            $user = Auth::guard('web')->user();
+                throw new \Exception('Login/Senha inválido(s)');
+            }
 
-            //if ($seller->company->contract->approve)
-            //    throw new \Exception(trans('auth.contract-to-approval'));
+            if (Auth::user()->hasVerifiedEmail() == false) {
 
-            // event(new SellerLoginEvent($seller));
+                if (!$this->validateConfirmEmail(Auth::user())) {
+                    throw new \Exception('Não foi possível enviar e-mail');
+                }
+
+                Auth::logout();
+
+                return redirect()->route('site.auth.show-confirm');
+            }
 
             return redirect()->route('site.index');
         
-        } catch (\Exception $e) {
-            // Auth::guard('seller')->logout();
+        } catch (\Exception $exception) {
 
-            //if ($hasPendingFinancial)
-            //    return redirect()->route('pending.financial', ['company' => $seller->company ?? null]);
-            
-            return redirect()->back()->withInput($request->only('email'))->with('error', $e->getMessage());
+            Auth::guard('web')->logout();
+
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+
+            return redirect()->back()->withInput($request->only('email'))->with('error', trans('auth.invalid'));
         }
     }
 

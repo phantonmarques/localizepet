@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
     data-base-url="{{ url('/') }}">
-
-   <!-- <html class="fixed { isset($_COOKIE['ag-sidebar-left-collapsed']) ? 'sidebar-left-collapsed' : '' }} whitelabel-bradesco"
-    lang="pt-br"
-    data-logged-company-id="{ logged_company('id') }}"
-    data-logged-user-id="{ logged_user('id') }}"
-    data-storage-url="{ storage_url() }}"> !-->
   
     <head>
         {{-- Base Meta Tags --}}
@@ -24,34 +18,37 @@
 
         {{-- Title --}}
         <title>
-            @yield('title', config('projetopet.title', 'Projeto Pet'))
+            @yield('title', config('localizepet.title', ''))
         </title>
 
         {{-- Vendor Stylesheets --}}
-        <link rel="stylesheet" href="{{ asset('css/vendors.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/site/all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/site/vendors.css') }}" />
+
+        {{--  All Site Stylesheets --}}
+        <link rel="stylesheet" href="{{ asset('css/site/all.css') }}" />
 
         {{-- Custom Stylesheets --}}
-        @yield('head_css')
+        @stack('style-css')
 
         {{-- Favicon --}}
-        @if(config('projetopet.use_ico_only'))
-            <link rel="shortcut icon" href="{{ asset('assets/general/imgs/logo.png') }}" />
-        @endif
+        <link rel="shortcut icon" href="{{ asset('images/default/logo.png') }}" />
 
     </head>
 
-    @include('site.templates.header')
+    @include('site.templates.components.header')
 
     {{-- Body Content --}}
     @yield('body-main')
 
-    @include('site.templates.footer')
+    @include('site.templates.components.footer')
+
+    {{-- Vendor Scripts --}}
+    <script src="{{ asset('js/site/vendors.js') }}"></script>
 
     {{-- Base Scripts --}}
-    <script src="{{ asset('js/vendors.js') }}"></script>
-    <script src="{{ asset('js/site/all.min.js') }}"></script>
+    <script src="{{ asset('js/site/all.js') }}"></script>
 
+    {{-- Custom Scripts--}}
     @stack('script-js')
 
 </html>

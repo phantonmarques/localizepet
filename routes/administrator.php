@@ -13,18 +13,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group( [ 'middleware' => 'auth' ], function () {
+Route::get('home', 'HomeController@dashboard')->name('home');
 
-    Route::get('home', 'HomeController@index')->name('home');
+/** Banners */
+Route::group(['as' => 'banners.', 'namespace' => 'Banner', 'prefix' => 'banners'], function () {
 
-    Route::group( [ 'namespace' => 'User' ], function () {
+    Route::get('/', 'BannerController@index')->name('index');
+    Route::post('/upload/temp', 'BannerController@upload')->name('upload');
 
-        Route::get( 'users/trashed', 'UserController@listTrashed' )->name( 'user.trashed' );
-        Route::resource( 'user', 'UserController' );
+    Route::post( '/load/{type}', 'BannerController@load' )->name('types');
+});
 
-    } );
+Route::group(['namespace' => 'User'], function () {
 
- } );
- 
+    /** Users */
+    Route::get('users/trashed', 'UserController@listTrashed')->name('users.trashed');
+    Route::get('users/recover/{id}', 'UserController@recover')->name('users.recover');
+    Route::resource('users', 'UserController');
 
+    /** Permissions */
+    Route::resource('permissions', 'PermissionController');
 
+    /** Role */
+    Route::resource('roles', 'RoleController');
+
+});
+
+/** Ongs */
+Route::group(['as' => 'ongs.', 'namespace' => 'Ong', 'prefix' => 'ongs'], function () {
+
+    Route::get('/details', 'OngController@showDetails')->name('details');
+});

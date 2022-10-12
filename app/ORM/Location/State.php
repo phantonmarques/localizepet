@@ -9,19 +9,22 @@ class State extends Model
     /**
      * @var string $table
      */
-    protected $table = 'state';
+    protected $table = 'states';
 
     /**
      * @var array $hidden
      */
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     /**
      * @var array $fillable
      */
     protected $fillable = [
         'name',
-        'name_visible',
+        'slug',
         'state_cod'
     ];
 

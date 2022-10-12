@@ -12,11 +12,21 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
+    /**
+     * Guard
+     *
+     * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard|mixed
+     */
     protected function guard()
     {
         return Auth::guard('web');
     }
 
+    /**
+     * Broker
+     *
+     * @return mixed
+     */
     protected function broker()
     {
         return Password::broker('web');
@@ -31,6 +41,6 @@ class ResetPasswordController extends Controller
 
     public function showLinkRequestForm() 
     {
-        return view('site.pages.auth.email');
+        return view('site.pages.auth.password-reset');
     }
 }

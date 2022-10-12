@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ORM\Location\State;
+use Illuminate\Support\Facades\DB;
 
 class StatesSeeder extends Seeder
 {
@@ -12,168 +12,198 @@ class StatesSeeder extends Seeder
      */
     public function run()
     {
-        State::create([
-            'name' => 'acre',
-            'name_visible' => 'Acre',
-            'state_cod' => 'AC',
-        ]);
+        DB::table('states')->delete();
 
-
-        State::create([
-            'name' => 'alagoas',
-            'name_visible' => 'Alagoas',
-            'state_cod' => 'AL',
-        ]);
-
-
-        State::create([
-            'name' => 'amazonas',
-            'name_visible' => 'Amazonas',
-            'state_cod' => 'AM',
-        ]);
-
-        State::create([
-            'name' => 'amapa',
-            'name_visible' => 'Amapá',
-            'state_cod' => 'AP',
-        ]);
-
-        State::create([
-            'name' => 'bahia',
-            'name_visible' => 'Bahia',
-            'state_cod' => 'BA',
-        ]);
-
-        State::create([
-            'name' => 'ceara',
-            'name_visible' => 'Ceará',
-            'state_cod' => 'CE',
-        ]);
-
-        State::create([
-            'name' => 'distrito-federal',
-            'name_visible' => 'Distrito Federal',
-            'state_cod' => 'DF',
-        ]);
-
-        State::create([
-            'name' => 'espirito-santo',
-            'name_visible' => 'Espírito Santo',
-            'state_cod' => 'ES',
-        ]);
-
-        State::create([
-            'name' => 'goias',
-            'name_visible' => 'Goiás',
-            'state_cod' => 'GO',
-        ]);
-
-        State::create([
-            'name' => 'maranhao',
-            'name_visible' => 'Maranhão',
-            'state_cod' => 'MA',
-        ]);
-
-        State::create([
-            'name' => 'minas-gerais',
-            'name_visible' => 'Minas Gerais',
-            'state_cod' => 'MG',
-        ]);
-
-        State::create([
-            'name' => 'mato-grosso-do-sul',
-            'name_visible' => 'Mato Grosso do Sul',
-            'state_cod' => 'MS',
-        ]);
-
-        State::create([
-            'name' => 'mato-grosso',
-            'name_visible' => 'Mato Grosso',
-            'state_cod' => 'MT',
-        ]);
-
-        State::create([
-            'name' => 'para',
-            'name_visible' => 'Pará',
-            'state_cod' => 'PA',
-        ]);
-
-        State::create([
-            'name' => 'paraiba',
-            'name_visible' => 'Paraiba',
-            'state_cod' => 'PB',
-        ]);
-
-        State::create([
-            'name' => 'pernambuco',
-            'name_visible' => 'Pernambuco',
-            'state_cod' => 'PE',
-        ]);
-
-        State::create([
-            'name' => 'piaui',
-            'name_visible' => 'Piauí',
-            'state_cod' => 'PI',
-        ]);
-
-        State::create([
-            'name' => 'parana',
-            'name_visible' => 'Paraná',
-            'state_cod' => 'PR',
-        ]);
-
-        State::create([
-            'name' => 'rio-de-janeiro',
-            'name_visible' => 'Rio de Janeiro',
-            'state_cod' => 'RJ',
-        ]);
-
-        State::create([
-            'name' => 'rio-grande-do-norte',
-            'name_visible' => 'Rio Grande do Norte',
-            'state_cod' => 'RN',
-        ]);
-
-        State::create([
-            'name' => 'rondonia',
-            'name_visible' => 'Rondônia',
-            'state_cod' => 'RO',
-        ]);
-
-        State::create([
-            'name' => 'roraima',
-            'name_visible' => 'Roraima',
-            'state_cod' => 'RR',
-        ]);
-
-        State::create([
-            'name' => 'rio-grande-do-sul',
-            'name_visible' => 'Rio Grande do Sul',
-            'state_cod' => 'RS',
-        ]);
-
-        State::create([
-            'name' => 'santa-catarina',
-            'name_visible' => 'Santa Catarina',
-            'state_cod' => 'SC',
-        ]);
-
-        State::create([
-            'name' => 'sergipe',
-            'name_visible' => 'Sergipe',
-            'state_cod' => 'SE',
-        ]);
-
-        State::create([
-            'name' => 'sao-paulo',
-            'name_visible' => 'São Paulo',
-            'state_cod' => 'SP',
-        ]);
-
-        State::create([
-            'name' => 'tocantins',
-            'name_visible' => 'Tocantins',
-            'state_cod' => 'TO',
+        DB::table('states')->insert([
+            [
+                'name'          => 'Acre',
+                'slug'          => 'acre',
+                'state_cod'     => 'AC',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Alagoas',
+                'slug'          => 'alagoas',
+                'state_cod'     => 'AL',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Amazonas',
+                'slug'          => 'amazonas',
+                'state_cod'     => 'AM',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Amapá',
+                'slug'          => 'amapa',
+                'state_cod'     => 'AP',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Bahia',
+                'slug'          => 'bahia',
+                'state_cod'     => 'BA',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Ceará',
+                'slug'          => 'ceara',
+                'state_cod'     => 'CE',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Distrito Federal',
+                'slug'          => 'distrito-federal',
+                'state_cod'     => 'DF',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Espírito Santo',
+                'slug'          => 'espirito-santo',
+                'state_cod'     => 'ES',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Goiás',
+                'slug'          => 'goias',
+                'state_cod'     => 'GO',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Maranhão',
+                'slug'          => 'maranhao',
+                'state_cod'     => 'MA',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Minas Gerais',
+                'slug'          => 'minas-gerais',
+                'state_cod'     => 'MG',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Mato Grosso do Sul',
+                'slug'          => 'mato-grosso-do-sul',
+                'state_cod'     => 'MS',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Mato Grosso',
+                'slug'          => 'mato-grosso',
+                'state_cod'     => 'MT',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Pará',
+                'slug'          => 'para',
+                'state_cod'     => 'PA',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Paraiba',
+                'slug'          => 'paraiba',
+                'state_cod'     => 'PB',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Pernambuco',
+                'slug'          => 'pernambuco',
+                'state_cod'     => 'PE',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Piauí',
+                'slug'          => 'piaui',
+                'state_cod'     => 'PI',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Paraná',
+                'slug'          => 'parana',
+                'state_cod'     => 'PR',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Rio de Janeiro',
+                'slug'          => 'rio-de-janeiro',
+                'state_cod'     => 'RJ',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Rio Grande do Norte',
+                'slug'          => 'rio-grande-do-norte',
+                'state_cod'     => 'RN',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Rondônia',
+                'slug'          => 'rondonia',
+                'state_cod'     => 'RO',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Roraima',
+                'slug'          => 'roraima',
+                'state_cod'     => 'RR',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Rio Grande do Sul',
+                'slug'          => 'rio-grande-do-sul',
+                'state_cod'     => 'RS',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Santa Catarina',
+                'slug'          => 'santa-catarina',
+                'state_cod'     => 'SC',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Sergipe',
+                'slug'          => 'sergipe',
+                'state_cod'     => 'SE',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'São Paulo',
+                'slug'          => 'sao-paulo',
+                'state_cod'     => 'SP',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'name'          => 'Tocantins',
+                'slug'          => 'tocantins',
+                'state_cod'     => 'TO',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ]
         ]);
     }
 }

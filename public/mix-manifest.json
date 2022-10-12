@@ -1,4 +1,17 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/administrator/all.js": "/js/administrator/all.js",
+    "/js/administrator/dashboard.js": "/js/administrator/dashboard.js",
+    "/js/administrator/permission/list.js": "/js/administrator/permission/list.js",
+    "/js/administrator/role/list.js": "/js/administrator/role/list.js",
+    "/js/administrator/user/create.js": "/js/administrator/user/create.js",
+    "/js/administrator/user/list.js": "/js/administrator/user/list.js",
+    "/js/site/all.js": "/js/site/all.js",
+    "/css/site/all.css": "/css/site/all.css",
+    "/css/site/user/create.css": "/css/site/user/create.css",
+    "/css/administrator/all.css": "/css/administrator/all.css",
+    "/css/site/vendors.css": "/css/site/vendors.css",
+    "/js/site/vendors.js": "/js/site/vendors.js",
+    "/js/site/user/create.js": "/js/site/user/create.js",
+    "/css/administrator/vendor.css": "/css/administrator/vendor.css",
+    "/js/administrator/vendor.js": "/js/administrator/vendor.js"
 }

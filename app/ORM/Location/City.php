@@ -9,7 +9,7 @@ class City extends Model
     /**
      * @var string $table
      */
-    protected $table = 'city';
+    protected $table = 'cities';
 
     /**
      * @var array $hidden
@@ -24,7 +24,7 @@ class City extends Model
      */
     protected $fillable = [
         'name',
-        'name_visible',
+        'slug',
         'ddd_city',
         'state_id'
     ];

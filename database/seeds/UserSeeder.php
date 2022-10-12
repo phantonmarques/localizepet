@@ -1,9 +1,8 @@
 <?php
 
+use App\ORM\User\Role;
 use Illuminate\Database\Seeder;
-use App\ORM\User\User;
-use App\ORM\Auth\Permission;
-use App\ORM\Auth\Role;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -14,21 +13,33 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        # Users Manager
-        $manager = Role::where('slug', 'manager')->first();
-        $adminPermissions = Permission::where('slug', 'admin-permission')->first();
+        DB::table('users')->delete();
+        DB::table('users_email_verify')->delete();
+        DB::table('users_permissions')->delete();
 
-        $userManager = new User();
-        $userManager->name = 'Daniel Marques';
-        $userManager->email = 'revolt_car@hotmail.com';
-        $userManager->email_verified_at = date('Y-m-d H:i:s');
-        $userManager->password = bcrypt('123456');
-        $userManager->contact = '41984518821';
-        $userManager->city_id = 4175;
-        $userManager->site = 'http://daniel-olindo.com.br';
-        $userManager->approved = true;
-        $userManager->save();
-        $userManager->roles()->attach($manager);
-        $userManager->permissions()->attach($adminPermissions);        
+        DB::table('users')->insert([
+            [
+                'id'                => 1,
+                'name'              => 'Daniel Marques',
+                'email'             => 'revolt_car@hotmail.com',
+                'email_verified_at' => date('Y-m-d H:i:s'),
+                'password'          => bcrypt('123456'),
+                'city_id'           => 4175,
+                'role_id'           => Role::ID_ADMINISTRATOR,
+                'created_at'        => now(),
+                'updated_at'        => now(),
+            ],
+            [
+                'id'                => 2,
+                'name'              => 'Fabiano Coutinho',
+                'email'             => 'fabianocm1995@hotmail.com',
+                'email_verified_at' => date('Y-m-d H:i:s'),
+                'password'          => bcrypt('123456'),
+                'city_id'           => 4175,
+                'role_id'           => Role::ID_ADMINISTRATOR,
+                'created_at'        => now(),
+                'updated_at'        => now(),
+            ]
+        ]);
     }
 }
