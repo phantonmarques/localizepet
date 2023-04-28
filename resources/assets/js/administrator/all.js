@@ -5,9 +5,6 @@ $(function() {
 
     'use strict';
 
-    const colorBtnSave = '#0088CC';
-    const colorBtnReject = '#dc3741';
-
     /** Forms */
     let petForm = $('#pet-form');
 
@@ -48,32 +45,6 @@ $(function() {
                 .find( 'li.' + activeMenu[1] ).addClass( 'nav-expanded nav-active' )
                 .find( 'li.' + activeMenu[2] ).addClass( 'nav-expanded nav-active' )
                 .find( 'li.' + activeMenu[3] ).addClass( 'nav-active' );
-
         }
     }
-
-    /**
-     * Delete item
-     */
-    $('.delete-item').on('click', function () {
-
-        let itemId = $(this).data('id');
-
-        Swal.fire({
-            title: 'Deseja continuar a exclusão?',
-            icon: 'question',
-            showCancelButton: true,
-            showConfirmButton: true,
-            cancelButtonColor: colorBtnReject,
-            confirmButtonColor: colorBtnSave,
-            confirmButtonText: 'Sim',
-            cancelButtonText: 'Não',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $('#delete-item-' + itemId).click();
-            }
-        })
-
-
-    });
 });

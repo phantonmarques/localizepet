@@ -5,7 +5,8 @@ $(function() {
 
      $('#destroy').tooltip({ boundary: 'window' });
 
-     $('#tb_permissions').dataTable({
+     /** Translate itens datatable */
+     $('#tb_list').dataTable({
           language: {
                lengthMenu: "Exibição _MENU_",
                zeroRecords: "Nenhum registro encontrado.",
@@ -22,4 +23,27 @@ $(function() {
                },
           }
      });
+
+     /** Delete Action */
+     const colorBtnSave = '#0088CC';
+     const colorBtnReject = '#dc3741';
+
+     $("#tb_list").on("click", ".delete-item", function() {
+          let itemId = $(this).data('id');
+
+          Swal.fire({
+               title: 'Deseja continuar a exclusão?',
+               icon: 'question',
+               showCancelButton: true,
+               showConfirmButton: true,
+               cancelButtonColor: colorBtnReject,
+               confirmButtonColor: colorBtnSave,
+               confirmButtonText: 'Sim',
+               cancelButtonText: 'Não',
+          }).then((result) => {
+               if (result.isConfirmed) {
+                    $('#delete-item-' + itemId).click();
+               }
+          })
+       });
 });

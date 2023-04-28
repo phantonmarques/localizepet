@@ -22,12 +22,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('profile_picture')->nullable();
 
+            $table->unsignedInteger('city_id')->nullable();
+            $table->unsignedInteger('role_id')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->unsignedInteger('city_id')->nullable();
-            $table->unsignedInteger('role_id')->nullable();
 
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');

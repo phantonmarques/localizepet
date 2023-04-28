@@ -20,14 +20,14 @@ class CreateAnimalsTable extends Migration
             $table->string('title', 100)->nullable();
             $table->string('size', 100)->nullable();
 
-            $table->timestamps();
-
             $table->unsignedBigInteger('user_id');
 
             $table->unsignedInteger('animal_status_id');
             $table->unsignedInteger('breed_id');
             $table->unsignedInteger('color_id');
             $table->unsignedInteger('location_id');
+
+            $table->timestamps();
 
             $table->foreign('animal_status_id')->references('id')->on('animal_status')->onDelete('cascade');
             $table->foreign('breed_id')->references('id')->on('breeds')->onDelete('cascade');

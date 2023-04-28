@@ -17,10 +17,10 @@ class CreateAnimalsAdditionalsTable extends Migration
 
             $table->index(['additional_id', 'animal_id']);
 
-            $table->timestamps();
-
             $table->unsignedInteger('additional_id');
             $table->unsignedInteger('animal_id');
+
+            $table->timestamps();
 
             $table->foreign('additional_id')->references('id')->on('additionals')->onDelete('cascade');
             $table->foreign('animal_id')->references('id')->on('animals')->onDelete('cascade');

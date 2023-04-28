@@ -5,11 +5,23 @@
     </a>
 </li>
 
-<li class="banners nav-without-children">
-    <a class="nav-link" href="{{ route('administrator.banners.index') }}">
+<li class="banners nav-parent">
+    <a class="nav-link" href="#">
         <i class="fas fa-pager" aria-hidden="true"></i>
         <span>Banner</span>
     </a>
+    <ul class="nav nav-children">
+        <li class="banner-type-header">
+            <a class="nav-link" href="{{ route('administrator.banners.index', ['header']) }}">
+                Cabeçalho
+            </a>
+        </li>
+        <li class="banner-type-footer">
+            <a class="nav-link" href="{{ route('administrator.banners.index', ['footer']) }}">
+                Rodapé
+            </a>
+        </li>
+    </ul>
 </li>
 
 <li class="nav-parent">
@@ -19,27 +31,89 @@
     </a>
     <ul class="nav nav-children">
         <li>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
                 Aprovar
             </a>
         </li>
         <li>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
                 Listar
             </a>
         </li>
         <li>
-            <a class="nav-link" href="layouts-default.html">
+            <a class="nav-link" href="#">
                 Cadastrar
             </a>
         </li>
         <li>
-            <a class="nav-link" href="layouts-default.html">
+            <a class="nav-link" href="#">
                 Excluídos
             </a>
         </li>
     </ul>
 </li>
+
+<li class="parameters nav-parent">
+    <a class="nav-link" href="#">
+        <i class="fas fa-cog" aria-hidden="true"></i>
+        <span>Parâmetros</span>
+    </a>
+    <ul class="nav nav-children">
+        <li class="animal-types nav-parent">
+            <a href="#">
+                Tipo de Animais
+            </a>
+            <ul class="nav nav-children" style="">
+                <li class="list">
+                    <a class="nav-link" href="{{ route('administrator.parameters.animal-types.index') }}">
+                        Listar
+                    </a>
+                </li>
+                <li class="create">
+                    <a class="nav-link" href="{{ route('administrator.parameters.animal-types.create') }}">
+                        Cadastrar
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="species nav-parent">
+            <a href="#">
+                Espécies de Animais
+            </a>
+            <ul class="nav nav-children" style="">
+                <li class="list">
+                    <a class="nav-link" href="{{ route('administrator.parameters.species.index') }}">
+                        Listar
+                    </a>
+                </li>
+                <li class="create">
+                    <a class="nav-link" href="{{ route('administrator.parameters.species.create') }}">
+                        Cadastrar
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="breeds nav-parent">
+            <a href="#">
+                Raças de Animais
+            </a>
+            <ul class="nav nav-children" style="">
+                <li class="list">
+                    <a class="nav-link" href="{{ route('administrator.parameters.breeds.index') }}">
+                        Listar
+                    </a>
+                </li>
+                <li class="create">
+                    <a class="nav-link" href="{{ route('administrator.parameters.breeds.create') }}">
+                        Cadastrar
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>
+
+<!-- 
 
 <li>
     <a class="nav-link" href="#">
@@ -55,17 +129,19 @@
     </a>
     <ul class="nav nav-children">
         <li>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
                 Listar
             </a>
         </li>
         <li>
-            <a class="nav-link" href="layouts-default.html">
+            <a class="nav-link" href="#">
                 Cadastrar
             </a>
         </li>
     </ul>
 </li>
+
+-->
 
 <li class="ong nav-parent">
     <a class="nav-link" href="#">

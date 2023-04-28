@@ -27,15 +27,16 @@ class RoleRequest extends FormRequest
     {
         $role = $this->route()->parameter('role');
 
-        if ($role instanceof Role) {
-            $role = ",{$role->id}";
-        } else {
-            $role = '';
-        }
+        $role = $this->isRole($role) ? ",{$role->id}" : '';
 
         return [
             'name'          => 'required|min:1|max:100|unique:roles,name' . $role,
             'permissions.*' => 'required|integer',
         ];
+    }
+
+    private function isRole($role): bool
+    {
+        return $role instanceof Role;
     }
 }

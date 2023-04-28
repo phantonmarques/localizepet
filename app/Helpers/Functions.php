@@ -1,28 +1,17 @@
 <?php
 
-if (!function_exists('formatDateAndTime')) {
+if (!function_exists('format_timestamp_br')) {
 
-    /**
-     * Format date using default Brazilian
-     * @param $value
-     * @param string $format
-     * @return string
-     */
-    function formatDateAndTime($value, $format = 'd/m/Y')
+    function format_timestamp_br($value, $format = 'd/m/Y')
     {
         return Carbon\Carbon::parse($value)->format($format);
     }
 };
 
 
-if (!function_exists('formatPhone')) {
+if (!function_exists('format_phone_br')) {
 
-    /**
-     * Format cell or phone (99) 9999?-9999
-     * @param $number
-     * @return string
-     */
-    function formatPhone($number)
+    function format_phone_br(?string $number): string
     {
         if (empty($number)) {
             return '';
@@ -42,7 +31,15 @@ if (!function_exists('formatPhone')) {
     }
 };
 
-if (false == function_exists('exceptionString')) {
+if (!function_exists('format_size_in_kb')) {
+
+    function format_size_in_kb(int $size): string
+    {
+        return number_format($size / 1024, 2);
+    }
+};
+
+if (!function_exists('exception_details')) {
 
     /**
      * Returns the custom \Exception toString: Message + File + Line
@@ -51,41 +48,36 @@ if (false == function_exists('exceptionString')) {
      *
      * @return string
      */
-    function exceptionString($exception = null, $visible = false) : string
+    function exception_details($exception = null, $visible = false): string
     {
-        $result = [];
+        $details = [];
 
         if ($exception instanceof \Exception) {
 
-            $result[] = 'Exception: ' . $exception->getMessage();
+            $details[] = 'Exception: ' . $exception->getMessage();
 
             if (config('app.env') == 'local' || $visible == false) {
-                $result[] = ' No arquivo: ' . $exception->getFile() . ' Na linha: ' . $exception->getLine();
+                $details[] = ' No arquivo: ' . $exception->getFile() . ' Na linha: ' . $exception->getLine();
             }
         }
 
-        return implode(' ', $result);
+        return implode(' ', $details);
     }
 };
 
-if (!function_exists('firstName')) {
+if (!function_exists('first_word')) {
 
-    /**
-     * Get possible first name in string with name complete [ template e-mail have limit width the 22 chars ]
-     * @param $nameComplete
-     * @return string
-     */
-    function firstName($nameComplete)
+    function first_word(string $value, int $limit = 22): string
     {
-        $nameComplete = explode(' ', $nameComplete);
+        $value = explode(' ', $value);
 
-        $nameComplete = current($nameComplete);
+        $value = current($value);
 
-        return substr($nameComplete, '0', '22');
+        return substr($value, 0, $limit);
     }
 };
 
-if (false == function_exists('convertArrayInObject')) {
+if (!function_exists('array_to_object')) {
 
     /**
      * Convert string JSON or array in object
@@ -94,7 +86,7 @@ if (false == function_exists('convertArrayInObject')) {
      *
      * @return object
      */
-    function convertArrayInObject($array = [], $json = true)
+    function array_to_object($array = [], $json = true): stdClass
     {
         $array = (array)$array;
 
@@ -107,12 +99,51 @@ if (false == function_exists('convertArrayInObject')) {
         foreach ($array as $key => $value) {
 
             if (is_array($value)) {
-                $value = convertArrayInObject($value, $json);
+                $value = array_to_object($value, $json);
             }
 
-            $object->$key = $value;
+            $object->{$key} = $value;
         }
 
         return $object;
     }
 };
+
+if (!function_exists('str_random')) {
+    /**
+     * Generate string random
+     *
+     * @param  int  $number
+     * @param  string  $complementString
+     * @return string
+     */
+    function str_random(int $number = 16, string $complementString = ''): string
+    {
+        return \Illuminate\Support\Str::random($number) . trim($complementString);
+    }
+}
+
+if (!function_exists('str_slug')) {
+    /**
+     * Generate a URL friendly "slug" from a given string.
+     *
+     * @param  string  $title
+     * @param  string  $separator
+     * @param  string  $language
+     * @return string
+     */
+    function str_slug(string $title, string $separator = '-', string $language = 'en'): string
+    {
+        return \Illuminate\Support\Str::slug($title, $separator, $language);
+    }
+}
+
+if (!function_exists('date_br')) {
+    /**
+     * Date in BR Format
+     */
+    function date_br($value, $format = 'd/m/Y', $default = ''): string
+    {
+        return trim($value ? date($format, strtotime($value)) : $default);
+    }
+}

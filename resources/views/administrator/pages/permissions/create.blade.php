@@ -1,14 +1,13 @@
 @extends('administrator.templates.master', [
     'activeMenu'    => 'permissions create',
-    'title'         => 'Cadastrar Permissão',
-    'titleError'    => trans('message_alert.error.create')
+    'titleError'    => trans('message_alert.error.create'),
+    'titleHead'     => 'Nova Permissão',
 ])
 
 @section('content')
     <div class="row">
         <div class="col">
-            <form id="pet-form" method="POST" action="{{ route('administrator.permissions.store') }}"
-                  class="form-horizontal">
+            <form id="pet-form" method="POST" action="{{ route('administrator.permissions.store') }}" class="form-horizontal">
 
                 @csrf
 
@@ -18,10 +17,8 @@
                             Nova Permissão
                         </h2>
                     </header>
-                    <div class="card-body pb-5">
-
+                    <div class="card-body">
                         @include('administrator.pages.permissions.inputs.form')
-
                     </div>
                     <footer class="card-footer text-end">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>

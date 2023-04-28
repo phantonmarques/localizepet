@@ -8,44 +8,24 @@ use App\ORM\User\Permission;
 use App\ORM\User\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
-        $roles = Role::with('permissions')->get();
-
         return view('administrator.pages.roles.list')->with([
-            'roles' => $roles
+            'roles' => Role::with('permissions')->get()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
-        $permissions = Permission::all();
-
         return view('administrator.pages.roles.create')->with([
-            'permissions' => $permissions
+            'permissions' => Permission::all()
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param RoleRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(RoleRequest $request)
     {
         try {
@@ -53,7 +33,7 @@ class RoleController extends Controller
 
             $role = Role::create([
                 'name' => $request->input('name'),
-                'slug' => Str::slug($request->input('name'))
+                'slug' => str_slug($request->input('name'))
             ]);
 
             $role->permissions()->attach($request->input('permissions'));
@@ -62,29 +42,19 @@ class RoleController extends Controller
 
             return redirect()->route('administrator.roles.index')->with('success', trans('message_alert.success.create'));
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
             DB::rollBack();
 
-            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exception_details($e));
 
             return redirect()->back()->withInput()->with('error', trans('message_alert.error.create'));
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Role $role
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function show(Role $role)
+    public function show(Role $role): View
     {
-        if ($role->id == Role::ID_ADMINISTRATOR) {
-            $rolePermissions = Permission::all()->toArray();
-        } else {
-            $rolePermissions = $role->permissions->toArray();
-        }
+        $rolePermissions = $this->isRoleAdmin($role->id) ? Permission::all()->toArray() : $role->permissions->toArray();
 
         return view('administrator.pages.roles.show')->with([
             'role'              => $role,
@@ -92,31 +62,20 @@ class RoleController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Role $role
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(Role $role)
+    private function isRoleAdmin($roleId): bool
     {
-        $permissions = Permission::all();
-        $rolePermissions = $role->permissions->pluck('id')->toArray();
+        return $roleId == Role::ID_ADMINISTRATOR;
+    }
 
+    public function edit(Role $role): View
+    {
         return view('administrator.pages.roles.edit')->with([
-            'permissions'       => $permissions,
+            'permissions'       => Permission::all(),
             'role'              => $role,
-            'rolePermissions'   => $rolePermissions
+            'rolePermissions'   => $role->permissions->pluck('id')->toArray()
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param RoleRequest $request
-     * @param Role $role
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(RoleRequest $request, Role $role)
     {
         try {
@@ -124,7 +83,7 @@ class RoleController extends Controller
 
             $role->update([
                 'name' => $request->input('name'),
-                'slug' => Str::slug($request->input('name'))
+                'slug' => str_slug($request->input('name'))
             ]);
 
             $role->permissions()->sync($request->input('permissions'));
@@ -133,32 +92,26 @@ class RoleController extends Controller
 
             return redirect()->route('administrator.roles.index')->with('success', trans('message_alert.success.update'));
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
             DB::rollBack();
 
-            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exception_details($e));
 
             return redirect()->back()->withInput()->with('error', trans('message_alert.error.update'));
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param $roleId
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($roleId)
+    public function destroy(string $id)
     {
         try {
-            Role::where('id', $roleId)->delete();
+            Role::where('id', $id)->delete();
 
             return redirect()->route('administrator.roles.index')->with('success', trans('message_alert.success.delete'));
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
-            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exception_details($e));
 
             return redirect()->back()->withInput()->with('error', trans('message_alert.error.delete'));
         }

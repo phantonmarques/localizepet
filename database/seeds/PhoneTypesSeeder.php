@@ -20,14 +20,14 @@ class PhoneTypesSeeder extends Seeder
             [
                 'id'         => PhoneType::FIXO,
                 'name'       => 'Fixo',
-                'slug'       => Str::slug('Fixo'),
+                'slug'       => str_slug('Fixo'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'id'         => PhoneType::CELULAR,
                 'name'       => 'Celular',
-                'slug'       => Str::slug('Celular'),
+                'slug'       => str_slug('Celular'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

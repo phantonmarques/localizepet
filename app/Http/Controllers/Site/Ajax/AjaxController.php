@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Site\Ajax;
 
 use App\Http\Controllers\Controller;
 use App\ORM\Location\City;
-use App\ORM\User\User;
-use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {

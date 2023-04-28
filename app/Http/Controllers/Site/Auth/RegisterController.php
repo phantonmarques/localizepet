@@ -71,11 +71,11 @@ class RegisterController extends Controller
                 'success' => trans('message_alert.success.create'),
             ]);
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
             DB::rollBack();
 
-            Log::error('Erro ao criar usuário comum: ' . $exception->getMessage());
+            Log::error('Erro ao criar usuário comum: ' . $e->getMessage());
 
             return redirect()->back()->withErrors(trans('message_alert.error.create'))
                 ->withInput();
@@ -124,12 +124,12 @@ class RegisterController extends Controller
                 'success' => true
             ]);
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
-            Log::error("Erro ao confirmar e-mail com o token [{$token}] de usuário comum: " . exceptionString($exception));
+            Log::error("Erro ao confirmar e-mail com o token [{$token}] de usuário comum: " . exception_details($e));
 
             return view('site.pages.auth.confirm')->with([
-                'error' => $exception->getMessage()
+                'error' => $e->getMessage()
             ]);
 
         }

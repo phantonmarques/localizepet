@@ -67,7 +67,7 @@ trait UserEmailVerifiedTrait {
                 'subject'  => config('app.name') . ' - confirmação de cadastro',
                 'html'     => view('emails.auth.email-verify')->with([
                     'url'  => route('site.auth.confirm', $token),
-                    'name' => firstName($name)
+                    'name' => first_word($name)
                 ])->render(),
             ));
 
@@ -75,7 +75,7 @@ trait UserEmailVerifiedTrait {
 
         } catch (\Exception $e) {
 
-            Log::error(__FUNCTION__ . " - " . exceptionString($e));
+            Log::error(__FUNCTION__ . " - " . exception_details($e));
 
             return false;
         }

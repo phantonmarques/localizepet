@@ -41,11 +41,15 @@
                                    <div class="form-group">
                                         <label class="form-label font-weight-bold">Função</label>
                                         <p>
-                                             <a href="{{ route('administrator.roles.edit', $user->role->id) }}"
-                                                target="_blank">
-                                                  {{ $user->role ? $user->role->name : 'Usuário Comum' }}
-                                                  &nbsp;<i class="fas fa-xs fa-external-link-alt"></i>
-                                             </a>
+                                             @if (isset($user->role->id) && $user->role->id != \App\ORM\User\Role::ID_ADMINISTRATOR)
+                                                  <a href="{{ route('administrator.roles.edit', $user->role->id) }}" target="_blank">
+                                                       {{ $user->role->name }}
+                                                       &nbsp;<i class="fas fa-xs fa-external-link-alt"></i>
+                                                  </a>
+                                             @else
+                                                  {{  $user->role->name ?? 'Usuário Comum' }}
+                                             @endif
+                                             
                                         </p>
                                    </div>
                               </div>

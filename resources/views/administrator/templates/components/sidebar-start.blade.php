@@ -18,23 +18,6 @@
                     {{ $slot }}
                 </ul>
             </nav>
-
-            <hr class="separator"/>
-
-            <div class="sidebar-widget widget-tasks">
-                <div class="widget-header">
-                    <h6>Projects</h6>
-                    <div class="widget-toggle">+</div>
-                </div>
-                <div class="widget-content">
-                    <ul class="list-unstyled m-0">
-                        <li><a href="#">Porto HTML5 Template</a></li>
-                        <li><a href="#">Tucson Template</a></li>
-                        <li><a href="#">Porto Admin</a></li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </div>
 

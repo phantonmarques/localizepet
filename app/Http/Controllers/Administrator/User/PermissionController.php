@@ -6,113 +6,74 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Administrator\PermissionRequest;
 use App\ORM\User\Permission;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class PermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function index()
+    public function index(): View
     {
-        $permissions = Permission::all();
-
         return view('administrator.pages.permissions.list')->with([
-            'permissions' => $permissions
+            'permissions' => Permission::all()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function create()
+    public function create(): View
     {
         return view('administrator.pages.permissions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param PermissionRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(PermissionRequest $request)
     {
         try {
             Permission::create([
                 'name' => $request->input('name'),
-                'slug' => Str::slug($request->input('name'))
+                'slug' => str_slug($request->input('name'))
             ]);
 
             return redirect()->route('administrator.permissions.index')->with('success', trans('message_alert.success.create'));
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
-            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exception_details($e));
 
             return redirect()->back()->withInput()->with('error', trans('message_alert.error.create'));
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Permission $permission
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(Permission $permission)
+    public function edit(Permission $permission): View
     {
-        return view('administrator.pages.permissions.edit')->with([
-            'permission' => $permission,
-        ]);
+        return view('administrator.pages.permissions.edit', compact('permission'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param PermissionRequest $request
-     * @param $permissionId
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(PermissionRequest $request, $permissionId)
+    public function update(PermissionRequest $request, string $id)
     {
         try {
-            Permission::where('id', $permissionId)->update([
+            Permission::where('id', $id)->update([
                 'name' => $request->input('name'),
-                'slug' => Str::slug($request->input('name'))
+                'slug' => str_slug($request->input('name'))
             ]);
 
             return redirect()->route('administrator.permissions.index')->with('success', trans('message_alert.success.update'));
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
-            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exception_details($e));
 
             return redirect()->back()->withInput()->with('error', trans('message_alert.error.update'));
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param $permissionId
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($permissionId)
+    public function destroy(string $id)
     {
         try {
-            Permission::where('id', $permissionId)->delete();
+            Permission::where('id', $id)->delete();
 
             return redirect()->route('administrator.permissions.index')
                 ->with('success', trans('message_alert.success.delete'));
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
-            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exception_details($e));
 
             return redirect()->back()->withInput()->with('error', trans('message_alert.error.delete'));
         }

@@ -1,1 +1,19 @@
-form .form-group .error{font-size:.6rem;font-style:italic;font-weight:400;margin-bottom:0;color:red}.asterisk-required{margin:0;padding:0;font-weight:700;color:red}
+/*
+* Class css defaults globals
+*/
+
+form .form-group .error {
+  font-size: 0.6rem;
+  font-style: italic;
+  font-weight: normal;
+  margin-bottom: 0;
+  color: red;
+}
+
+.asterisk-required {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  color: red;
+}
+

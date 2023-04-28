@@ -39,7 +39,7 @@ class MailJob implements ShouldQueue
      */
     public function __construct($data)
     {
-        $this->data = convertArrayInObject($data);
+        $this->data = array_to_object($data);
         $this->onQueue('emails');
     }
 

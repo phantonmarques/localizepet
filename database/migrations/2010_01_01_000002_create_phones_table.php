@@ -21,10 +21,10 @@ class CreatePhonesTable extends Migration
             $table->boolean('whatsapp')->default(false);
             $table->string('number');
 
-            $table->timestamps();
-
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('type_id');
+
+            $table->timestamps();
 
             $table->foreign('type_id')->references('id')->on('phone_types')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -27,11 +27,7 @@ class PermissionRequest extends FormRequest
     {
         $permission = $this->route()->parameter('permission');
 
-        if ($permission instanceof Permission) {
-            $permission = ",{$permission->id}";
-        } else {
-            $permission = '';
-        }
+        $permission = isset($permission) ? ",{$permission}" : '';
 
         return [
             'name' => 'required|min:1|max:100|unique:permissions,name' . $permission,

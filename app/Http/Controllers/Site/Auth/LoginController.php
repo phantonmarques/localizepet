@@ -61,11 +61,11 @@ class LoginController extends Controller
 
             return redirect()->route('site.index');
         
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
 
             Auth::guard('web')->logout();
 
-            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exceptionString($exception));
+            Log::error(__CLASS__ . "::" . __FUNCTION__ . " " . exception_details($e));
 
             return redirect()->back()->withInput($request->only('email'))->with('error', trans('auth.invalid'));
         }

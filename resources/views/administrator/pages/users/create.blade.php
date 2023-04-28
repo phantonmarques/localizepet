@@ -1,7 +1,7 @@
 @extends('administrator.templates.master', [
     'activeMenu'    => 'users create',
-    'title'         => 'Cadastrar Usuário',
-    'titleError'    => trans('message_alert.error.create')
+    'titleError'    => trans('message_alert.error.create'),
+    'titleHead'     => 'Novo Usuário',
 ])
 
 @section('content')
@@ -17,10 +17,8 @@
                             Novo Usuário
                         </h2>
                     </header>
-                    <div class="card-body pb-5">
-
+                    <div class="card-body">
                         @include('administrator.pages.users.inputs.form')
-
                     </div>
                     <footer class="card-footer text-end">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>

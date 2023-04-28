@@ -277,6 +277,7 @@
   display: block;
   cursor: pointer;
   border: none;
+  color: #b62424;
 }
 .dropzone .dz-preview .dz-remove:hover {
   text-decoration: underline;
@@ -447,7 +448,7 @@
   transition: opacity 0.3s ease;
   border-radius: 8px;
   font-size: 13px;
-  top: 130px;
+  top: 150px;
   left: -10px;
   width: 140px;
   background: #be2626;

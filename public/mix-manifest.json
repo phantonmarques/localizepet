@@ -1,10 +1,9 @@
 {
     "/js/administrator/all.js": "/js/administrator/all.js",
+    "/js/administrator/banner/photos.js": "/js/administrator/banner/photos.js",
     "/js/administrator/dashboard.js": "/js/administrator/dashboard.js",
-    "/js/administrator/permission/list.js": "/js/administrator/permission/list.js",
-    "/js/administrator/role/list.js": "/js/administrator/role/list.js",
+    "/js/administrator/list-tables.js": "/js/administrator/list-tables.js",
     "/js/administrator/user/create.js": "/js/administrator/user/create.js",
-    "/js/administrator/user/list.js": "/js/administrator/user/list.js",
     "/js/site/all.js": "/js/site/all.js",
     "/css/site/all.css": "/css/site/all.css",
     "/css/site/user/create.css": "/css/site/user/create.css",

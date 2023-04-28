@@ -26,10 +26,10 @@ class CreateLocationsTable extends Migration
             $table->string('website')->nullable();
             $table->string('complement')->nullable();
 
+            $table->unsignedInteger('city_id')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
-
-            $table->unsignedInteger('city_id')->nullable();
 
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });

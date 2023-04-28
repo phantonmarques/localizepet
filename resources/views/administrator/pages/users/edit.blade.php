@@ -1,7 +1,7 @@
 @extends('administrator.templates.master', [
     'activeMenu'    => 'users create',
-    'title'         => 'Editar Usuário',
-    'titleError'    => trans('message_alert.error.update')
+    'titleError'    => trans('message_alert.error.update'),
+    'titleHead'     => 'Editar Usuário',
 ])
 
 @section('content')
@@ -19,10 +19,8 @@
                             Editar Usuário
                         </h2>
                     </header>
-                    <div class="card-body pb-5">
-
+                    <div class="card-body">
                         @include('administrator.pages.users.inputs.form')
-
                     </div>
                     <footer class="card-footer text-end">
                         <button type="submit" class="btn btn-primary">Atualizar</button>

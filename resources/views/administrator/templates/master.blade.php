@@ -6,13 +6,15 @@
         <meta charset="UTF-8">
 
         <title>
-            {{ config('localizepet.title', '') . ( isset($title) ? " - {$title}" : '' ) }}
+            {{ config('localizepet.title', '') . ( isset($title) ? " - {$title}" : ( isset($titleHead) ? " - {$titleHead}" : '' ) ) }}
         </title>
 
         <meta name="robots" content="noindex, nofollow">
         <meta name="AdsBot-Google" content="noindex, nofollow">
         <meta name="googlebot" content="noindex, nofollow">
         <meta name="googlebot-news" content="noindex, nofollow">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>

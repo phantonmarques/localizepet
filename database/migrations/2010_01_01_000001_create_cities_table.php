@@ -22,9 +22,9 @@ class CreateCitiesTable extends Migration
             $table->string('name', 100);
             $table->string('slug', 100);
 
-            $table->timestamps();
-
             $table->unsignedInteger('state_id');
+
+            $table->timestamps();
 
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
         });

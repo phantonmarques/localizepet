@@ -27,11 +27,7 @@ class UserRequest extends FormRequest
     {
         $user = $this->route()->parameter('user');
 
-        if ($user instanceof User) {
-            $user = ",{$user->id}";
-        } else {
-            $user = '';
-        }
+        $user = $this->isUser($user) ? ",{$user->id}" : '';
 
         return [
             'name'      => 'required|max:100',
@@ -39,5 +35,10 @@ class UserRequest extends FormRequest
             'password'  => empty($user) ? 'required|min:8' : '',
             'city_id'   => 'required|integer'
         ];
+    }
+
+    private function isUser($user): bool
+    {
+        return $user instanceof User;
     }
 }

@@ -19,11 +19,11 @@ class CreateOngImagesTable extends Migration
 
             $table->string('path');
 
-            $table->timestamps();
-
             $table->unsignedInteger('ong_id');
             $table->unsignedSmallInteger('size')->default(600)->comment('Kb');
             $table->unsignedTinyInteger('position')->default(0);
+
+            $table->timestamps();
 
             $table->foreign('ong_id')->references('id')->on('ongs')->onDelete('cascade');
         });

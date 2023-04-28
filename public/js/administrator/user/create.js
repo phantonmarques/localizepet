@@ -1,1 +1,177 @@
-!function(e){var t={};function n(o){if(t[o])return t[o].exports;var i=t[o]={i:o,l:!1,exports:{}};return e[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}n.m=e,n.c=t,n.d=function(e,t,o){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)n.d(o,i,function(t){return e[t]}.bind(null,i));return o},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=15)}({15:function(e,t,n){e.exports=n(16)},16:function(e,t){$((function(){var e=$("html").data("base-url"),t=$(".main_phones"),n=$("select#cities"),o=$("select#states"),i=$(".switch-only .ios-switch");function r(t){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;n.empty().append($("<option>",{text:"Necessário selecionar antes um estado!",value:"",selected:!t})),t&&$.get(e+"/search-cities/"+t,null,(function(e){$.each(e,(function(e,t){n.append($("<option>",{value:e,text:t,selected:null!==o&&o===parseInt(e)}))}))}))}o.on("change",(function(){r(this.value)})),n.data("initial")&&o.data("initial")?r(o.data("initial"),n.data("initial")):(console.log("cai aqui"),o.val("")),i.on("click",(function(){var e=$(this).hasClass("on");$(".switch-only .ios-switch.on").removeClass("on").addClass("off"),e?$(this).addClass("on"):$(this).removeClass("off")})),t.on("change",(function(){var e=this.checked,n=$(this).data("attribute-number");t.prop("checked",!1),e&&(t.removeAttr("required"),$(".phone-mask").removeAttr("required"),$("#"+n).attr("required",""),this.checked=!0,this.required=!0)}))}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/administrator/user/create.js":
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/administrator/user/create.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  var baseUrl = $('html').data('base-url'),
+      mainPhones = $('.main_phones'),
+      selectCities = $('select#cities'),
+      selectState = $('select#states'),
+      switchOnly = $('.switch-only .ios-switch');
+  /* Stated selected Event */
+
+  selectState.on('change', function () {
+    fillCities(this.value);
+  });
+
+  if (selectCities.data('initial') && selectState.data('initial')) {
+    fillCities(selectState.data('initial'), selectCities.data('initial'));
+  } else {
+    console.log('cai aqui');
+    selectState.val('');
+  }
+
+  function fillCities(stateId) {
+    var cityId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    selectCities.empty().append($('<option>', {
+      text: 'Necessário selecionar antes um estado!',
+      value: '',
+      selected: !stateId
+    }));
+
+    if (stateId) {
+      $.get(baseUrl + '/search-cities/' + stateId, null, function (response) {
+        $.each(response, function (key, value) {
+          selectCities.append($('<option>', {
+            value: key,
+            text: value,
+            selected: cityId !== null && cityId === parseInt(key)
+          }));
+        });
+      });
+    }
+  }
+  /* Only checked */
+
+
+  switchOnly.on('click', function () {
+    var active = $(this).hasClass('on');
+    $('.switch-only .ios-switch.on').removeClass('on').addClass('off');
+
+    if (active) {
+      $(this).addClass('on');
+    } else {
+      $(this).removeClass('off');
+    }
+  });
+  mainPhones.on('change', function () {
+    var inputCheck = this.checked;
+    var inputNumber = $(this).data('attribute-number');
+    mainPhones.prop('checked', false);
+
+    if (inputCheck) {
+      mainPhones.removeAttr('required');
+      $('.phone-mask').removeAttr('required');
+      $('#' + inputNumber).attr('required', '');
+      this.checked = true;
+      this.required = true;
+    }
+  });
+});
+
+/***/ }),
+
+/***/ 4:
+/*!****************************************************************!*\
+  !*** multi ./resources/assets/js/administrator/user/create.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\Users\dnlfl\Projects\Localizepet\resources\assets\js\administrator\user\create.js */"./resources/assets/js/administrator/user/create.js");
+
+
+/***/ })
+
+/******/ });

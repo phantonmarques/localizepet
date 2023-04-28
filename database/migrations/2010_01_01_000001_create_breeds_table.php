@@ -20,11 +20,11 @@ class CreateBreedsTable extends Migration
             $table->string('name', 100)->nullable();
             $table->string('slug', 100)->nullable();
 
+            $table->unsignedInteger('specie_id');
+
             $table->timestamps();
 
-            $table->unsignedInteger('species_id');
-
-            $table->foreign('species_id')->references('id')->on('species')->onDelete('cascade');
+            $table->foreign('specie_id')->references('id')->on('species')->onDelete('cascade');
         });
     }
 

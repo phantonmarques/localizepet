@@ -18,10 +18,10 @@ Route::get('home', 'HomeController@dashboard')->name('home');
 /** Banners */
 Route::group(['as' => 'banners.', 'namespace' => 'Banner', 'prefix' => 'banners'], function () {
 
-    Route::get('/', 'BannerController@index')->name('index');
+    Route::get('/{type}', 'BannerController@index')->name('index');
+    Route::post( '/load', 'BannerController@load' )->name('load');
     Route::post('/upload/temp', 'BannerController@upload')->name('upload');
-
-    Route::post( '/load/{type}', 'BannerController@load' )->name('types');
+    Route::post('/store', 'BannerController@store')->name('store');
 });
 
 Route::group(['namespace' => 'User'], function () {
@@ -37,6 +37,14 @@ Route::group(['namespace' => 'User'], function () {
     /** Role */
     Route::resource('roles', 'RoleController');
 
+});
+
+/** Parameters */
+Route::group(['as' => 'parameters.', 'namespace' => 'Parameters', 'prefix' => 'parameters'], function () {
+
+    Route::resource('animal-types', 'AnimalTypeController');
+    Route::resource('species', 'SpecieController');
+    Route::resource('breeds', 'BreedController');
 });
 
 /** Ongs */

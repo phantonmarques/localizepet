@@ -24,6 +24,7 @@ class Banner extends Model
      */
     protected $fillable = [
         'path',
+        'path_thumb',
         'type',
         'size',
         'position',
@@ -49,14 +50,5 @@ class Banner extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    /** Helpers */
-
-    public static function getSizeImage($url)
-    {
-        $imgHeader = get_headers( storage_url($url), true );
-        $sizeImg = $imgHeader['Content-Length'] / 1024;
-        return round($sizeImg);
     }
 }

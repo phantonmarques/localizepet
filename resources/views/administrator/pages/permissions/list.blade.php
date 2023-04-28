@@ -14,14 +14,10 @@
                             Nova Permissão
                         </a>
                     </div>
-
-                    <h2 class="card-title pt-2">
-                        Permissões
-                    </h2>
                 </header>
                 <div class="card-body">
 
-                    <table class="table table-bordered table-hover table-striped mb-0" id="tb_permissions">
+                    <table class="table table-bordered table-hover table-striped mb-0" id="tb_list">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -38,7 +34,7 @@
                                             {{ $permission->id }}
                                         </td>
                                         <td>
-                                            {{ $permission->name ?? null }}
+                                            {{ $permission->name }}
                                         </td>
                                         <td class="actions d-flex justify-content-center">
                                             <a href="{{ route('administrator.permissions.edit', $permission->id) }}" id="edit"
@@ -80,5 +76,5 @@
     <script src="{{ asset('vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js') }}"></script>
-    <script src="{{ asset('js/administrator/permission/list.js') }}"></script>
+    <script src="{{ asset('js/administrator/list-tables.js') }}"></script>
 @endpush

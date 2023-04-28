@@ -7,48 +7,48 @@ use App\ORM\Banner\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use Illuminate\View\View;
+use Intervention\Image\ImageManagerStatic;
 
 class BannerController extends Controller
 {
-    const TYPE_HEADER = 'header';
-    const TYPE_FOOTER = 'rodape';
+    const PATH_IMAGE = 'storage/';
 
-
-    /**
-     * Show the configuration to banner.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(string $type): View
     {
-        return view('administrator.pages.banners.index');
+        return view('administrator.pages.banners.index')->with([
+            'type' => $type
+        ]);
     }
 
-    public function load($type = null)
+    public function load(Request $request)
     {
-        $banners = Banner::orderBy('position');
-
-        if ($type == self::TYPE_HEADER) {
-            $banners = $banners->where('type', self::TYPE_HEADER);
-        } elseif ($type == '') {
-
-        }
+        $banners = Banner::where('type', $request->input('type') ?? null)
+            ->orderBy('position')->get();
 
         $result = [];
 
-        foreach ($banners->files as $file) {
+        foreach ($banners ?? [] as $banner) {
 
+            if (!Storage::exists($banner->path)) {
+                continue;
+            }
+            
             $result[] = [
-                'id' => $file->id,
-                'name' => $file->name . '.' . pathinfo($file->path, PATHINFO_EXTENSION),
-                'size' => $file->size,
-                'path' => $file->path,
+                'id'   => $banner->id,
+                'image' => "data:image/" . pathinfo($banner->path, PATHINFO_EXTENSION) . ";base64," . base64_encode(Storage::get($banner->path)),
+                'dateCreate' => date_br($banner->created_at),
+                'dateUpdate' => date_br($banner->updated_at),
+                'size' => $banner->size,
+                'thumb' => Storage::url($banner->path_thumb),
             ];
         }
 
-        return response()->json(['files' => $result]);
+        return response()->json([
+            'files' => $result
+        ]);
     }
 
     public function upload(Request $request)
@@ -60,36 +60,78 @@ class BannerController extends Controller
                 throw new \Exception("O arquivo ultrapassa o limite de 10mb");
             }
 
-            $path = Storage::putFileAs(
-                "public/banner",
-                $file,
-                Str::random(20) . '.' . strtolower($file->getClientOriginalExtension())
-            );
-
-            $banner = Banner::create([
-                'path'      => $path,
-                'type'      => $request->input('type') ?? null,
-                'size'      => number_format($file->getSize() / 1024, 2),
-                'position'  => 0,
-                'user_id'   => auth()->user()->id,
-            ]);
-
             return response()->json([
-                'name' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
-                'size' => $banner->size,
-                'path' => $path,
+                'name'  => "{$file->getClientOriginalName()}",
+                'image' => "data:image/{$file->getClientOriginalExtension()};base64," . base64_encode($file->get())
             ]);
 
-            /*
-                $table->string('path')->comment('URL parcial do arquivo de banner');
-            $table->string('type')->comment('Tipo banner: header, rodapé, ...');
-            $table->unsignedSmallInteger('size')->default(600)->comment('Tamanho da imagem em Kb');
-            $table->unsignedTinyInteger('position')->default(0)->comment('posicao da imagem');
-            $table->unsignedBigInteger('user_id');
-             */
-        } catch (\Exception $exception) {
+        } catch(\Throwable $e) {
 
-            return response()->json($exception->getMessage())->setStatusCode(Response::HTTP_BAD_REQUEST);
+            return response()->json(exception_details($e))
+                ->setStatusCode(Response::HTTP_BAD_REQUEST);
         }
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            $type = $request->input('type') ?? null;
+
+            $this->cleanDataAndFiles($type);
+
+            DB::beginTransaction();
+
+            foreach($request->images ?? [] as $index => $image) {
+
+                $imageName = str_random(16, ".{$this->getExtensionInBase64($image)}");
+                $imagePath = "banners/{$type}/{$imageName}";
+                $imageThumbPath = "banners/{$type}/thumb_{$imageName}";
+
+                $image = explode(',', $image);
+                $image = base64_decode(end($image));
+
+                Storage::put($imagePath, $image);
+                
+                $imageThumb = ImageManagerStatic::make(Storage::path($imagePath))->fit(140, 110)->stream()->detach();
+
+                Storage::put($imageThumbPath, $imageThumb);
+
+                Banner::create([
+                    'path'          => $imagePath,
+                    'path_thumb'    => $imageThumbPath,
+                    'type'          => $type,
+                    'size'          => format_size_in_kb(Storage::size($imagePath)),
+                    'position'      => $index,
+                    'user_id'       => auth()->user()->id,
+                ]);
+            }
+
+            DB::commit();
+
+            return redirect()->back()->with('success', trans('message_alert.success.update'));
+
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            Log::error(__CLASS__ . '::' . __CLASS__ . ' - ' . exception_details($e));
+
+        }
+
+        return redirect()->back()->with('error', exception_details($e));
+    }
+
+    private function cleanDataAndFiles($type): void
+    {
+        Storage::deleteDirectory("banners/{$type}");
+        Banner::where('type', $type)->delete();
+    }
+
+    private function getExtensionInBase64($value): string
+    {
+        $value = current(explode(';', $value));
+        $value = explode('/', $value);
+
+        return end($value);
     }
 }

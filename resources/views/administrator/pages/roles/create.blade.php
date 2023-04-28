@@ -1,7 +1,7 @@
 @extends('administrator.templates.master', [
     'activeMenu'    => 'roles create',
-    'title'         => 'Cadastrar Função',
-    'titleError'    => trans('message_alert.error.create')
+    'titleError'    => trans('message_alert.error.create'),
+    'titleHead'     => 'Nova Função',
 ])
 
 @section('content')
@@ -20,10 +20,8 @@
                             É possível selecionar uma ou mais permissões para a função.
                         </p>
                     </header>
-                    <div class="card-body pb-5">
-
+                    <div class="card-body">
                         @include('administrator.pages.roles.inputs.form')
-
                     </div>
                     <footer class="card-footer text-end">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>

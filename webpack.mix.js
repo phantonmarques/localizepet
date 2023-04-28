@@ -66,6 +66,10 @@ mix.js([
     'resources/assets/js/administrator/all.js',
 ], 'public/js/administrator/all.js');
 
+mix.js([
+    'resources/assets/js/administrator/list-tables.js',
+], 'public/js/administrator/list-tables.js');
+
 mix.scripts([
     'public/vendor/jquery/jquery.min.js',
     'public/vendor/jquery-appear/jquery.appear.js',
@@ -94,24 +98,15 @@ mix.scripts([
         'resources/assets/js/administrator/dashboard.js',
     ], 'public/js/administrator/dashboard.js');
 
-    /* Permission */
-    mix.js([
-        'resources/assets/js/administrator/permission/list.js',
-    ], 'public/js/administrator/permission/list.js');
-
-    /* Role */
-    mix.js([
-        'resources/assets/js/administrator/role/list.js',
-    ], 'public/js/administrator/role/list.js');
-
     /* User */
-    mix.js([
-        'resources/assets/js/administrator/user/list.js',
-    ], 'public/js/administrator/user/list.js');
-
     mix.js([
         'resources/assets/js/administrator/user/create.js',
     ], 'public/js/administrator/user/create.js')
+
+    /* Banner */
+    mix.js([
+        'resources/assets/js/administrator/banner/photos.js',
+    ], 'public/js/administrator/banner/photos.js')
 
 // TODO: Images Defaults
 

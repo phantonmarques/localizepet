@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
 
         /** Animals */
         $this->call(AnimalStatusSeeder::class);
+        $this->call(AnimalTypesSeeder::class);
         $this->call(SpeciesSeeder::class);
+        $this->call(BreedsSeeder::class);
     }
 }

@@ -66,7 +66,7 @@ class SendGridService
 
         } catch (\Exception $e) {
 
-            Log::error(exceptionString($e));
+            Log::error(exception_details($e));
 
             return false;
         }
@@ -121,19 +121,23 @@ class SendGridService
      */
     private function parseCopy($data)
     {
-        $data = (array)convertArrayInObject($data);
+        $data = (array)array_to_object($data);
 
-        $copyMail = [];
+        $copyAddresses = [];
 
         foreach ($data ?? [] as $item) {
 
             if (filter_var($item->email ?? null, FILTER_VALIDATE_EMAIL)) {
 
-                $copyMail[] = (object)[ 'email' => $item->email, 'name' => $item->name ?? null ];
+                $address = new \stdClass();
+                $address->email = $item->email;
+                $address->name = $item->name;
+
+                $copyAddresses[] = $address;
             }
         }
 
-        return $copyMail;
+        return $copyAddresses;
     }
 
     /**

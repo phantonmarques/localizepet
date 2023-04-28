@@ -19,10 +19,10 @@ class CreateUsersEmailVerifyTable extends Migration
 
             $table->string('token');
 
+            $table->unsignedBigInteger('user_id');
+
             $table->timestamp('token_expires')->nullable();
             $table->timestamps();
-
-            $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

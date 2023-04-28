@@ -20,9 +20,9 @@ class CreateSpeciesTable extends Migration
             $table->string('name', 100)->nullable();
             $table->string('slug', 100)->nullable();
 
-            $table->timestamps();
-
             $table->unsignedInteger('animal_type_id');
+
+            $table->timestamps();
 
             $table->foreign('animal_type_id')->references('id')->on('animal_types')->onDelete('cascade');
         });

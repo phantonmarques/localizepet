@@ -24,9 +24,9 @@ class CreateOngsTable extends Migration
 
             $table->text('biography')->nullable();
 
-            $table->timestamps();
-
             $table->unsignedBigInteger('user_id');
+
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

@@ -18,6 +18,7 @@ class CreateBannersTable extends Migration
             $table->increments('id');
 
             $table->string('path');
+            $table->string('path_thumb');
             $table->string('type');
 
             $table->unsignedBigInteger('user_id');
