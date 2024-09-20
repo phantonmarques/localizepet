@@ -44,18 +44,18 @@ class SpecieController extends Controller
         }
     }
 
-    public function show(Specie $species): View
+    public function show($id): View
     {
         return view('administrator.pages.parameters.species.show', [
-            'specie' => $species
+            'specie' => Specie::findOrFail($id)
         ]);
     }
 
-    public function edit(Specie $species)
+    public function edit($id): View
     {
         return view('administrator.pages.parameters.species.edit', [
             'animalTypes' => AnimalType::all(),
-            'specie'      => $species,
+            'specie'      => Specie::findOrFail($id),
         ]);
     }
 

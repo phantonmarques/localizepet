@@ -31,8 +31,8 @@ class BreedController extends Controller
 
     public function show($id): View
     {
-        return view('administrator.pages.parameters.breeds.list', [
-            'breeds' => Breed::all()
+        return view('administrator.pages.parameters.breeds.show', [
+            'breed' => Breed::findOrFail($id)
         ]);
     }
 

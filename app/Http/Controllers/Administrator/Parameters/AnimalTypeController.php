@@ -41,9 +41,11 @@ class AnimalTypeController extends Controller
         }
     }
 
-    public function edit(AnimalType $animalType): View
+    public function edit($id): View
     {
-        return view('administrator.pages.parameters.animal-types.edit', compact('animalType'));
+        return view('administrator.pages.parameters.animal-types.edit', [
+            'animalType' => AnimalType::findOrFail($id)
+        ]);
     }
 
     public function update(AnimalTypeRequest $request, string $id)

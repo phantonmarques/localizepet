@@ -23,6 +23,7 @@
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th>Espécie</th>
+                                <th>Tipo de animal</th>
                                 <th>Operações</th>
                             </tr>
                         </thead>
@@ -37,6 +38,9 @@
                                     </td>
                                     <td>
                                         {{ $breed->specie->name ?? null }}
+                                    </td>
+                                    <td>
+                                        {{ $breed->specie->animal_type->name ?? null }}
                                     </td>
                                     <td class="actions d-flex justify-content-center">
                                         <a href="{{ route('administrator.parameters.breeds.edit', $breed->id) }}" id="edit"
